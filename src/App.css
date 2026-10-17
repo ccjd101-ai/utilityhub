@@ -1,0 +1,103 @@
+.app {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5%;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--color-text);
+  font-size: 1.25rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.brand-icon {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border-radius: 0.7rem;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.app-main {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  padding: 4rem 1.5rem;
+}
+
+.placeholder {
+  width: 100%;
+  max-width: 42rem;
+  text-align: center;
+}
+
+.placeholder h1 {
+  margin: 0 0 1rem;
+  color: var(--color-text);
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.placeholder > p {
+  margin: 0.75rem 0;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.placeholder .placeholder-note {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+}
+
+.app-footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  text-align: center;
+}
+
+.app-footer p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 0.85rem 1.25rem;
+  }
+
+  .brand {
+    font-size: 1.15rem;
+  }
+
+  .app-main {
+    padding: 3rem 1.25rem;
+  }
+
+  .placeholder > p {
+    font-size: 1rem;
+  }
+}
