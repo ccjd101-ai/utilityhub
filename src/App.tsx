@@ -1,11 +1,8 @@
 import {
   ArrowDownRight,
   ArrowRight,
-  Braces,
   Check,
   Code2,
-  FileDiff,
-  Hash,
   LockKeyhole,
   Menu,
   Search,
@@ -16,41 +13,9 @@ import {
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import { tools } from './tools/registry'
+import { useNavigate } from 'react-router'
 
-const tools = [
-  {
-    title: 'JSON Formatter',
-    description: 'Format, validate and beautify JSON data instantly.',
-    category: 'DEVELOPERS',
-    href: '/tools/json-formatter',
-    icon: Braces,
-    accent: 'green',
-  },
-  {
-    title: 'JSON Diff',
-    description: 'Compare JSON and spot differences with ease.',
-    category: 'DEVELOPERS',
-    href: '/tools/json-diff',
-    icon: FileDiff,
-    accent: 'red',
-  },
-  {
-    title: 'Text Formatter',
-    description: 'Clean, format and transform text in seconds.',
-    category: 'PRODUCTIVITY',
-    href: '/tools/text-formatter',
-    icon: Type,
-    accent: 'blue',
-  },
-  {
-    title: 'GUID Generator',
-    description: 'Generate UUIDs and GUIDs for your projects.',
-    category: 'DEVELOPERS',
-    href: '/tools/guid-generator',
-    icon: Hash,
-    accent: 'orange',
-  },
-]
 
 const benefits = [
   {
@@ -118,6 +83,7 @@ function App() {
   const introLogoRef = useRef<HTMLDivElement>(null)
   const typingTimerRef = useRef<number | undefined>(undefined)
   const animationTimerRef = useRef<number | undefined>(undefined)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!introVisible) return
@@ -171,7 +137,7 @@ function App() {
     event.preventDefault()
 
     if (filteredTools.length === 1) {
-      window.location.href = filteredTools[0].href
+      navigate(filteredTools[0].href)
     } else if (filteredTools.length > 1) {
       document.getElementById('tools')?.scrollIntoView({
         behavior: 'smooth',

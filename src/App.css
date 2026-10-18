@@ -2472,3 +2472,217 @@
     animation: none;
   }
 }
+
+/* Shared tool-page foundation */
+
+.tool-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(66, 230, 164, 0.055),
+      transparent 55%
+    ),
+    var(--bg);
+  color: var(--text);
+}
+
+.tool-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem clamp(1.25rem, 5vw, 5rem);
+  border-bottom: 1px solid var(--border);
+}
+
+.tool-page-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tool-page-brand-mark {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 0.65rem;
+  background: var(--green);
+  color: var(--bg);
+  font-weight: 800;
+}
+
+.tool-page-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.tool-page-back:hover {
+  color: var(--green);
+}
+
+.tool-page-main {
+  width: min(100% - 2.5rem, 1000px);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) 0 2rem;
+}
+
+.tool-page-heading {
+  max-width: 720px;
+  margin-bottom: 2.5rem;
+}
+
+.tool-page-heading .section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tool-page-heading h1 {
+  margin: 1rem 0;
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.tool-page-heading > p {
+  max-width: 620px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.tool-page-content {
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background: var(--surface);
+}
+
+.tool-page-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.not-found-page {
+  display: grid;
+  min-height: 100vh;
+  align-content: center;
+  justify-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: var(--bg);
+  color: var(--text);
+  text-align: center;
+}
+
+.not-found-page h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 500;
+}
+
+.not-found-page p {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.not-found-page a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.65rem;
+  background: var(--green);
+  color: var(--bg);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.not-found-page a:hover {
+  filter: brightness(1.08);
+}
+
+@media (max-width: 600px) {
+  .tool-page-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .tool-page-main {
+    width: calc(100% - 2rem);
+    padding-top: 3rem;
+  }
+
+  .tool-page-footer {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-page-back {
+    transition: none;
+  }
+}
+
+.tool-coming-soon {
+  max-width: 560px;
+}
+
+.tool-coming-soon-badge {
+  display: inline-block;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid rgba(66, 230, 164, 0.25);
+  border-radius: 999px;
+  background: rgba(66, 230, 164, 0.08);
+  color: var(--green);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.tool-coming-soon h2 {
+  margin: 1.25rem 0 0.75rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.tool-coming-soon p {
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.tool-coming-soon a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.65rem;
+  background: var(--green);
+  color: var(--bg);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tool-coming-soon a:hover {
+  filter: brightness(1.08);
+}
