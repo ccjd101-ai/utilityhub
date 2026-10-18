@@ -110,9 +110,8 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [introVisible, setIntroVisible] = useState(
-  () =>
-    !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-)
+    () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  )
   const [typedLogo, setTypedLogo] = useState('')
   const [introMoving, setIntroMoving] = useState(false)
   const logoTargetRef = useRef<HTMLAnchorElement>(null)
@@ -121,13 +120,7 @@ function App() {
   const animationTimerRef = useRef<number | undefined>(undefined)
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches
-
-    if (prefersReducedMotion) {
-      return
-    }
+    if (!introVisible) return
 
     const logoName = 'UtilityHub'
     let currentIndex = 0
@@ -166,7 +159,7 @@ function App() {
       window.clearInterval(typingTimerRef.current)
       window.clearTimeout(animationTimerRef.current)
     }
-  }, [])
+  }, [introVisible])
 
   const filteredTools = tools.filter((tool) =>
     `${tool.title} ${tool.description} ${tool.category}`
