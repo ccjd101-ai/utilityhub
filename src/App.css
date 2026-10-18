@@ -2686,3 +2686,428 @@
 .tool-coming-soon a:hover {
   filter: brightness(1.08);
 }
+/* Tool navigation sidebar */
+.tool-page {
+  --tool-sidebar-width: 252px;
+  min-height: 100vh;
+}
+
+.tool-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 100;
+  display: flex;
+  width: var(--tool-sidebar-width);
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  transition: width 220ms ease, transform 220ms ease;
+}
+
+.tool-sidebar.is-collapsed {
+  width: 76px;
+}
+
+.tool-sidebar-top {
+  position: relative;
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tool-sidebar-brand {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tool-sidebar-brand-mark {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  border: 1px solid rgba(66, 230, 164, 0.35);
+  border-radius: 11px;
+  background: rgba(66, 230, 164, 0.1);
+  color: var(--green);
+  font-family: var(--sans);
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.tool-sidebar-collapse,
+.tool-sidebar-mobile-close {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.tool-sidebar-collapse:hover,
+.tool-sidebar-mobile-close:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.tool-sidebar.is-collapsed .tool-sidebar-top {
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0;
+}
+
+.tool-sidebar.is-collapsed .tool-sidebar-brand {
+  justify-content: center;
+}
+
+.tool-sidebar.is-collapsed .tool-sidebar-brand > span:last-child {
+  display: none;
+}
+
+.tool-sidebar-nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 12px;
+}
+
+.tool-sidebar-home,
+.tool-sidebar-link {
+  position: relative;
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: rgba(244, 243, 239, 0.72);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.tool-sidebar-home:hover,
+.tool-sidebar-link:hover {
+  background: rgba(244, 243, 239, 0.045);
+  color: var(--text);
+}
+
+.tool-sidebar-home svg,
+.tool-sidebar-link svg {
+  flex: 0 0 18px;
+}
+
+.tool-sidebar-home {
+  margin-bottom: 8px;
+}
+
+.tool-sidebar-section-heading {
+  min-height: 26px;
+  padding: 8px 12px 4px;
+  color: rgba(244, 243, 239, 0.4);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.tool-sidebar-section-divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
+
+.tool-sidebar-category {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.tool-sidebar-category-title {
+  margin: 8px 12px 6px;
+  color: rgba(244, 243, 239, 0.48);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.tool-sidebar-link.is-active {
+  border-color: rgba(66, 230, 164, 0.16);
+  background: rgba(66, 230, 164, 0.09);
+  color: var(--green);
+}
+
+.tool-sidebar-active-indicator {
+  position: absolute;
+  top: 10px;
+  right: -1px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 3px 0 0 3px;
+  background: var(--green);
+}
+
+.tool-sidebar.is-collapsed .tool-sidebar-nav {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.tool-sidebar.is-collapsed .tool-sidebar-home,
+.tool-sidebar.is-collapsed .tool-sidebar-link {
+  justify-content: center;
+  gap: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.tool-sidebar-bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px;
+  padding: 14px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(244, 243, 239, 0.025);
+}
+
+.tool-sidebar-bottom-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  place-items: center;
+  border-radius: 9px;
+  background: rgba(66, 230, 164, 0.1);
+  color: var(--green);
+}
+
+.tool-sidebar-bottom > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tool-sidebar-bottom strong {
+  color: var(--text);
+  font-size: 11px;
+}
+
+.tool-sidebar-bottom > div > span {
+  color: rgba(244, 243, 239, 0.48);
+  font-size: 10px;
+}
+
+.tool-sidebar-mobile-toggle,
+.tool-sidebar-mobile-close,
+.tool-sidebar-overlay {
+  display: none;
+}
+
+/* Shift the tool content to make room for the sidebar */
+.tool-page-shell {
+  min-width: 0;
+  min-height: 100vh;
+  margin-left: var(--tool-sidebar-width);
+  transition: margin-left 220ms ease;
+}
+
+.tool-page.sidebar-collapsed .tool-page-shell {
+  margin-left: 76px;
+}
+
+.tool-page-header {
+  gap: 16px;
+}
+
+@media (max-width: 760px) {
+  .tool-page {
+    --tool-sidebar-width: 0px;
+  }
+
+  .tool-sidebar {
+    width: min(290px, 84vw);
+    transform: translateX(-100%);
+    box-shadow: 24px 0 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .tool-sidebar.is-collapsed {
+    width: min(290px, 84vw);
+  }
+
+  .tool-sidebar.is-mobile-open,
+  .tool-sidebar.is-collapsed.is-mobile-open {
+    width: min(290px, 84vw);
+    transform: translateX(0);
+  }
+
+  .tool-sidebar.is-collapsed .tool-sidebar-top {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 18px;
+  }
+
+  .tool-sidebar.is-collapsed .tool-sidebar-brand > span:last-child {
+    display: inline;
+  }
+
+  .tool-sidebar.is-collapsed .tool-sidebar-nav {
+    padding: 20px 12px;
+  }
+
+  .tool-sidebar.is-collapsed .tool-sidebar-home,
+  .tool-sidebar.is-collapsed .tool-sidebar-link {
+    justify-content: flex-start;
+    gap: 12px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .tool-sidebar.is-collapsed .tool-sidebar-section-heading {
+    padding: 8px 12px 4px;
+  }
+
+  .tool-sidebar.is-collapsed .tool-sidebar-section-divider {
+    width: auto;
+    height: auto;
+    background: transparent;
+  }
+
+  .tool-sidebar-mobile-toggle {
+    position: fixed;
+    top: 19px;
+    left: 16px;
+    z-index: 90;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .tool-sidebar-collapse {
+    display: none;
+  }
+
+  .tool-sidebar-mobile-close {
+    display: grid;
+  }
+
+  .tool-sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 95;
+    display: block;
+    border: 0;
+    background: rgba(0, 0, 0, 0.65);
+    cursor: pointer;
+  }
+
+  .tool-page-shell,
+  .tool-page.sidebar-collapsed .tool-page-shell {
+    margin-left: 0;
+  }
+
+  .tool-page-header {
+    padding-left: 68px;
+  }
+
+  .tool-page-header .tool-page-brand {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-sidebar,
+  .tool-page-shell,
+  .tool-sidebar-home,
+  .tool-sidebar-link {
+    transition: none;
+  }
+}
+
+
+/* Refined tool-page header */
+.tool-page-header-minimal {
+  justify-content: flex-end;
+}
+
+/* Keep collapsed navigation compact and clearly grouped */
+.tool-sidebar.is-collapsed .tool-sidebar-category {
+  gap: 8px;
+}
+
+.tool-sidebar.is-collapsed .tool-sidebar-section-heading {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+/* Narrow mobile screens */
+@media (max-width: 380px) {
+  .tool-page-header {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding-right: 12px;
+    padding-left: 64px;
+  }
+
+  .tool-page-header-minimal {
+    justify-content: flex-end;
+  }
+
+  .tool-page-back {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  .tool-page-main {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .tool-page-heading h1 {
+    overflow-wrap: anywhere;
+    font-size: clamp(36px, 11vw, 48px);
+  }
+
+  .tool-page-content {
+    min-width: 0;
+  }
+}
