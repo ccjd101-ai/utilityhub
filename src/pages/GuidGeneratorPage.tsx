@@ -1,15 +1,32 @@
 import { useState } from 'react'
-import { Download, RefreshCw, Trash2 } from 'lucide-react'
+import {
+  ArrowDownToLine,
+  Copy,
+  Download,
+  ExternalLink,
+  RefreshCw,
+  Trash2,
+} from 'lucide-react'
+import { Link } from 'react-router'
 import ToolLayout from '../components/layout/ToolLayout'
 import ActionButton from '../components/ui/ActionButton'
 import CopyButton from '../components/ui/CopyButton'
 import { useActionFeedback } from '../hooks/useActionFeedback'
+import { useRecentResults } from '../hooks/useRecentResults'
+import { tools } from '../tools/registry'
 
 const MIN_COUNT = 1
 const MAX_COUNT = 100
 const DEFAULT_COUNT = 10
 
 type GuidCase = 'lowercase' | 'uppercase'
+
+interface GuidBatch {
+  guids: string[]
+  casing: GuidCase
+  includeHyphens: boolean
+  includeBraces: boolean
+}
 
 function createGuid(
   casing: GuidCase,
@@ -33,6 +50,19 @@ function createGuid(
   return guid
 }
 
+function formatBatchDate(value: string): string {
+  const date = new Date(value)
+
+  if (Number.isNaN(date.getTime())) {
+    return 'Unknown date'
+  }
+
+  return new Intl.DateTimeFormat(undefined, {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(date)
+}
+
 function GuidGeneratorPage() {
   const [count, setCount] = useState(String(DEFAULT_COUNT))
   const [casing, setCasing] = useState<GuidCase>('lowercase')
@@ -40,6 +70,16 @@ function GuidGeneratorPage() {
   const [includeBraces, setIncludeBraces] = useState(false)
   const [guids, setGuids] = useState<string[]>([])
   const [message, setMessage] = useState('')
+
+  const {
+    items: recentResults,
+    add: addRecentResult,
+    remove: removeRecentResult,
+    clear: clearRecentResults,
+  } = useRecentResults<GuidBatch>({
+    storageKey: 'utilityhub:guid-generator:recent-results',
+    maxItems: 10,
+  })
 
   const generateFeedback = useActionFeedback()
   const copyFeedback = useActionFeedback()
@@ -66,6 +106,14 @@ function GuidGeneratorPage() {
       )
 
       setGuids(generated)
+
+      addRecentResult({
+        guids: generated,
+        casing,
+        includeHyphens,
+        includeBraces,
+      })
+
       setMessage(
         `${generated.length} GUID${generated.length === 1 ? '' : 's'} generated.`,
       )
@@ -106,7 +154,6 @@ function GuidGeneratorPage() {
       link.click()
       link.remove()
 
-      // Allow the browser to start the download before releasing the URL.
       window.setTimeout(() => URL.revokeObjectURL(url), 1000)
 
       setMessage(`${guids.length} GUIDs downloaded.`)
@@ -121,6 +168,47 @@ function GuidGeneratorPage() {
     setGuids([])
     setMessage('Results cleared.')
     clearFeedback.showSuccess()
+  }
+
+  function restoreBatch(batch: GuidBatch) {
+    setGuids(batch.guids)
+    setCount(String(batch.guids.length))
+    setCasing(batch.casing)
+    setIncludeHyphens(batch.includeHyphens)
+    setIncludeBraces(batch.includeBraces)
+    setMessage(`${batch.guids.length} GUIDs restored from recent results.`)
+  }
+
+  async function copyBatch(batch: GuidBatch) {
+    try {
+      await navigator.clipboard.writeText(batch.guids.join('\n'))
+      setMessage(`${batch.guids.length} historical GUIDs copied.`)
+    } catch {
+      setMessage('Unable to access the clipboard. Check browser permissions.')
+    }
+  }
+
+  function downloadBatch(batch: GuidBatch, id: string) {
+    try {
+      const blob = new Blob([batch.guids.join('\n')], {
+        type: 'text/plain;charset=utf-8',
+      })
+
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+
+      link.href = url
+      link.download = `utilityhub-guids-${id}.txt`
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000)
+
+      setMessage(`${batch.guids.length} historical GUIDs downloaded.`)
+    } catch {
+      setMessage('Unable to download historical GUIDs.')
+    }
   }
 
   return (
@@ -256,6 +344,140 @@ function GuidGeneratorPage() {
             </ol>
           )}
         </div>
+
+        <section
+          className="guid-history"
+          aria-labelledby="guid-history-title"
+        >
+          <div className="guid-history-heading">
+            <div>
+              <h2 id="guid-history-title">Recent Results</h2>
+              <p>Your latest generated batches, saved in this browser.</p>
+            </div>
+
+            {recentResults.length > 0 && (
+              <button
+                type="button"
+                className="guid-history-clear"
+                onClick={clearRecentResults}
+              >
+                <Trash2 size={14} aria-hidden="true" />
+                Clear history
+              </button>
+            )}
+          </div>
+
+          {recentResults.length === 0 ? (
+            <div className="guid-history-empty">
+              <p>No recent batches yet.</p>
+              <span>Generated batches will appear here.</span>
+            </div>
+          ) : (
+            <ol className="guid-history-list">
+              {recentResults.map((result) => {
+                const batch = result.data
+
+                return (
+                  <li key={result.id} className="guid-history-item">
+                    <div className="guid-history-info">
+                      <strong>
+                        {batch.guids.length}{' '}
+                        {batch.guids.length === 1 ? 'GUID' : 'GUIDs'}
+                      </strong>
+
+                      <span>{formatBatchDate(result.createdAt)}</span>
+
+                      <span>
+                        {batch.casing === 'uppercase'
+                          ? 'Uppercase'
+                          : 'Lowercase'}
+                        {' · '}
+                        {batch.includeHyphens ? 'Hyphens' : 'No hyphens'}
+                        {' · '}
+                        {batch.includeBraces ? 'Braces' : 'No braces'}
+                      </span>
+                    </div>
+
+                    <div className="guid-history-actions">
+                      <button
+                        type="button"
+                        onClick={() => restoreBatch(batch)}
+                        aria-label={`Restore ${batch.guids.length} GUIDs`}
+                      >
+                        <RefreshCw size={15} aria-hidden="true" />
+                        <span>Restore</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => void copyBatch(batch)}
+                        aria-label={`Copy ${batch.guids.length} GUIDs`}
+                      >
+                        <Copy size={15} aria-hidden="true" />
+                        <span>Copy</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => downloadBatch(batch, result.id)}
+                        aria-label={`Download ${batch.guids.length} GUIDs`}
+                      >
+                        <ArrowDownToLine size={15} aria-hidden="true" />
+                        <span>Download</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => removeRecentResult(result.id)}
+                        aria-label={`Delete batch generated ${formatBatchDate(result.createdAt)}`}
+                      >
+                        <Trash2 size={15} aria-hidden="true" />
+                        <span>Delete</span>
+                      </button>
+                    </div>
+                  </li>
+                )
+              })}
+            </ol>
+          )}
+        </section>
+
+        <section
+          className="guid-related"
+          aria-labelledby="guid-related-title"
+        >
+          <h2 id="guid-related-title">Related Tools</h2>
+          <p>More utilities for your development workflow.</p>
+
+          <div className="guid-related-grid">
+            {tools
+              .filter(
+                (tool) =>
+                  tool.category === 'DEVELOPERS' &&
+                  tool.href !== '/tools/guid-generator',
+              )
+              .map((tool) => {
+                const Icon = tool.icon
+
+                return (
+                  <Link
+                    key={tool.href}
+                    to={tool.href}
+                    className="guid-related-card"
+                  >
+                    <Icon size={20} aria-hidden="true" />
+
+                    <span>
+                      <strong>{tool.title}</strong>
+                      <small>Coming soon</small>
+                    </span>
+
+                    <ExternalLink size={14} aria-hidden="true" />
+                  </Link>
+                )
+              })}
+          </div>
+        </section>
 
         <p className="guid-status" role="status" aria-live="polite">
           {message}
