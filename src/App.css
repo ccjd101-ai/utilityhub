@@ -3111,3 +3111,556 @@
     min-width: 0;
   }
 }
+
+/* GUID Generator */
+.guid-generator {
+  display: grid;
+  gap: 1.75rem;
+  min-width: 0;
+}
+
+.guid-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.guid-field {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+}
+
+.guid-field > label,
+.guid-options legend {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.guid-field input,
+.guid-field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.guid-field-hint {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.guid-options {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 1 / -1;
+  gap: 1rem 1.5rem;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+
+.guid-options legend {
+  padding: 0 0.4rem;
+}
+
+.guid-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.guid-options input {
+  accent-color: var(--green);
+}
+
+.guid-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.guid-actions button,
+.guid-copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.guid-button-primary {
+  border-color: var(--green) !important;
+  background: var(--green);
+  color: var(--bg);
+}
+
+.guid-button-primary:hover {
+  filter: brightness(1.08);
+}
+
+.guid-button-secondary,
+.guid-copy-button {
+  background: transparent;
+  color: var(--text);
+}
+
+.guid-button-secondary:hover,
+.guid-copy-button:hover {
+  border-color: var(--green);
+}
+
+.guid-actions button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.guid-results {
+  min-width: 0;
+}
+
+.guid-results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.guid-results-heading h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.guid-results-heading > span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.guid-empty-state {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+  padding: 3rem 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 0.85rem;
+  text-align: center;
+}
+
+.guid-empty-state p {
+  margin: 0;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.guid-empty-state span {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.guid-results-list {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 480px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+}
+
+.guid-results-list li {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) 2.5rem;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.guid-result-index {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.guid-results-list code {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.85rem;
+}
+
+.guid-copy-button {
+  width: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0;
+}
+
+.guid-status {
+  min-height: 1.25rem;
+  margin: 0;
+  color: var(--green);
+  font-size: 0.85rem;
+}
+
+.guid-generator button:focus-visible,
+.guid-generator input:focus-visible,
+.guid-generator select:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .guid-controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .guid-options {
+    grid-column: auto;
+  }
+
+  .guid-actions button {
+    flex: 1 1 auto;
+  }
+
+  .guid-results-list li {
+    grid-template-columns: 1.6rem minmax(0, 1fr) 2.5rem;
+    gap: 0.4rem;
+    padding: 0.5rem;
+  }
+
+  .guid-results-list code {
+    font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guid-actions button,
+  .guid-copy-button {
+    transition: none;
+  }
+}
+
+/* Shared action button interactions */
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.action-button-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.action-button-primary {
+  border-color: var(--green);
+  background: var(--green);
+  color: var(--bg);
+}
+
+.action-button-secondary {
+  background: transparent;
+  color: var(--text);
+}
+
+.action-button:not(:disabled):active {
+  transform: scale(0.97);
+}
+
+.action-button:not(:disabled):hover {
+  border-color: var(--green);
+}
+
+.action-button-primary:not(:disabled):hover {
+  filter: brightness(1.08);
+}
+
+.action-button-success {
+  border-color: rgba(66, 230, 164, 0.55);
+  background: rgba(66, 230, 164, 0.12);
+  color: var(--green);
+  box-shadow: 0 0 0 3px rgba(66, 230, 164, 0.06);
+}
+
+.action-button-error {
+  border-color: rgba(255, 100, 100, 0.5);
+  background: rgba(255, 100, 100, 0.1);
+  color: #ff8585;
+}
+
+.action-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.action-button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action-button {
+    transition: none;
+  }
+
+  .action-button:not(:disabled):active {
+    transform: none;
+  }
+}
+
+/* Shared copy button interactions */
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.copy-button:hover {
+  border-color: var(--green);
+}
+
+.copy-button:active {
+  transform: scale(0.96);
+}
+
+.copy-button-success {
+  border-color: rgba(66, 230, 164, 0.55);
+  background: rgba(66, 230, 164, 0.12);
+  color: var(--green);
+}
+
+.copy-button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy-button {
+    transition: none;
+  }
+
+  .copy-button:active {
+    transform: none;
+  }
+}
+
+/* GUID Generator: shared copy button integration */
+.guid-copy-button {
+  flex-shrink: 0;
+  min-height: 2.25rem;
+  padding: 0.4rem 0.65rem;
+}
+
+.guid-copy-button span {
+  font-size: 0.75rem;
+}
+
+.guid-actions .action-button {
+  min-width: 7rem;
+}
+
+@media (max-width: 600px) {
+  .guid-actions .action-button {
+    min-width: 0;
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+
+  .guid-copy-button {
+    padding: 0.4rem;
+  }
+}
+
+/* Icon-only copy button: stable dimensions before and after copying */
+.copy-button-icon-only {
+  width: 2.5rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.copy-button-icon-only svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Preserve the same dimensions for GUID result buttons */
+.guid-copy-button.copy-button-icon-only {
+  width: 2.5rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0;
+}
+
+/* Stable dimensions for all animated action buttons */
+.action-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
+
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.action-button-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+/* Keep the same button dimensions regardless of feedback text */
+.action-button-primary {
+  min-width: 11.8rem;
+  border-color: var(--green);
+  background: var(--green);
+  color: var(--bg);
+}
+
+.action-button-secondary {
+  min-width: 8rem;
+  background: transparent;
+  color: var(--text);
+}
+
+.action-button:not(:disabled):active {
+  transform: scale(0.97);
+}
+
+.action-button:not(:disabled):hover {
+  border-color: var(--green);
+}
+
+.action-button-primary:not(:disabled):hover {
+  filter: brightness(1.08);
+}
+
+.action-button-success {
+  border-color: rgba(66, 230, 164, 0.55);
+  background: rgba(66, 230, 164, 0.12);
+  color: var(--green);
+  box-shadow: 0 0 0 3px rgba(66, 230, 164, 0.06);
+}
+
+.action-button-error {
+  border-color: rgba(255, 100, 100, 0.5);
+  background: rgba(255, 100, 100, 0.1);
+  color: #ff8585;
+}
+
+.action-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.action-button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+/* Individual copy buttons remain icon-only with fixed dimensions */
+.copy-button-icon-only,
+.guid-copy-button.copy-button-icon-only {
+  width: 2.5rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .action-button-primary,
+  .action-button-secondary {
+    min-width: 0;
+  }
+
+  .guid-actions .action-button {
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action-button {
+    transition: none;
+  }
+
+  .action-button:not(:disabled):active {
+    transform: none;
+  }
+}

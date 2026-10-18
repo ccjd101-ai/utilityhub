@@ -3,6 +3,7 @@ import { getToolByPath, tools } from '../tools/registry'
 import ToolLayout from '../components/layout/ToolLayout'
 import NotFoundPage from '../pages/NotFoundPage'
 import App from '../App'
+import GuidGeneratorPage from '../pages/GuidGeneratorPage'
 
 function ToolPlaceholder() {
   const location = useLocation()
@@ -38,7 +39,12 @@ function AppRoutes() {
     },
     ...tools.map((tool) => ({
       path: tool.href,
-      element: <ToolPlaceholder />,
+      element:
+        tool.href === '/tools/guid-generator' ? (
+          <GuidGeneratorPage />
+        ) : (
+          <ToolPlaceholder />
+        ),
     })),
     {
       path: '*',
