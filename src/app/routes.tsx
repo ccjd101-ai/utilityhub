@@ -32,6 +32,9 @@ const ColorConverterPage = lazy(() => import('../pages/ColorConverterPage'))
 const ContrastCheckerPage = lazy(() => import('../pages/ContrastCheckerPage'))
 const QrCodeGeneratorPage = lazy(() => import('../pages/QrCodeGeneratorPage'))
 const ImageCompressorPage = lazy(() => import('../pages/ImageCompressorPage'))
+const PercentageCalculatorPage = lazy(() => import('../pages/PercentageCalculatorPage'))
+const UnitConverterPage = lazy(() => import('../pages/UnitConverterPage'))
+const TipCalculatorPage = lazy(() => import('../pages/TipCalculatorPage'))
 
 function ToolPlaceholder() {
   const location = useLocation()
@@ -122,6 +125,12 @@ function AppRoutes() {
           <QrCodeGeneratorPage />
         ) : tool.href === '/tools/image-compressor' ? (
           <ImageCompressorPage />
+        ) : tool.href === '/tools/percentage-calculator' ? (
+          <PercentageCalculatorPage />
+        ) : tool.href === '/tools/unit-converter' ? (
+          <UnitConverterPage />
+        ) : tool.href === '/tools/tip-calculator' ? (
+          <TipCalculatorPage />
         ) : (
           <ToolPlaceholder />
         ),
