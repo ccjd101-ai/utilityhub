@@ -28,6 +28,9 @@ const DateTimeFormatPage = lazy(() => import('../pages/DateTimeFormatPage'))
 const PasswordGeneratorPage = lazy(() => import('../pages/PasswordGeneratorPage'))
 const Sha256Page = lazy(() => import('../pages/Sha256Page'))
 const UuidValidatorPage = lazy(() => import('../pages/UuidValidatorPage'))
+const ColorConverterPage = lazy(() => import('../pages/ColorConverterPage'))
+const ContrastCheckerPage = lazy(() => import('../pages/ContrastCheckerPage'))
+const QrCodeGeneratorPage = lazy(() => import('../pages/QrCodeGeneratorPage'))
 
 function ToolPlaceholder() {
   const location = useLocation()
@@ -110,6 +113,12 @@ function AppRoutes() {
           <JsonFormatterPage />
         ) : tool.href === '/tools/guid-generator' ? (
           <GuidGeneratorPage />
+        ) : tool.href === '/tools/color-converter' ? (
+          <ColorConverterPage />
+        ) : tool.href === '/tools/contrast-checker' ? (
+          <ContrastCheckerPage />
+        ) : tool.href === '/tools/qr-code-generator' ? (
+          <QrCodeGeneratorPage />
         ) : (
           <ToolPlaceholder />
         ),

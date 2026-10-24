@@ -20,6 +20,9 @@
   Regex,
   WholeWord,
   Type,
+  Palette,
+  ScanQrCode,
+  Contrast,
 } from 'lucide-react'
 import type { ToolCategory, ToolDefinition } from './types'
 
@@ -217,6 +220,30 @@ export const tools: ToolDefinition[] = [
     icon: BadgeCheck,
     accent: 'orange',
   },
+  {
+    title: 'Color Picker & Converter',
+    description: 'Choose a color and convert between HEX, RGB, and HSL formats.',
+    category: 'COLOR_IMAGE_WEB',
+    href: '/tools/color-converter',
+    icon: Palette,
+    accent: 'blue',
+  },
+  {
+    title: 'Color Contrast Checker',
+    description: 'Check WCAG text contrast ratios and accessibility guidance.',
+    category: 'COLOR_IMAGE_WEB',
+    href: '/tools/contrast-checker',
+    icon: Contrast,
+    accent: 'green',
+  },
+  {
+    title: 'QR Code Generator',
+    description: 'Create and download QR codes for links and plain text.',
+    category: 'COLOR_IMAGE_WEB',
+    href: '/tools/qr-code-generator',
+    icon: ScanQrCode,
+    accent: 'orange',
+  },
 ]
 
 export function getToolByPath(path: string): ToolDefinition | undefined {
@@ -247,6 +274,9 @@ const relatedToolPaths: Record<string, string[]> = {
   '/tools/password-generator': ['/tools/sha256', '/tools/uuid-validator', '/tools/guid-generator'],
   '/tools/sha256': ['/tools/password-generator', '/tools/jwt-decoder', '/tools/uuid-validator', '/tools/guid-generator'],
   '/tools/uuid-validator': ['/tools/guid-generator', '/tools/password-generator', '/tools/sha256'],
+  '/tools/color-converter': ['/tools/contrast-checker', '/tools/qr-code-generator', '/tools/slug-generator'],
+  '/tools/contrast-checker': ['/tools/color-converter', '/tools/qr-code-generator', '/tools/markdown-preview'],
+  '/tools/qr-code-generator': ['/tools/color-converter', '/tools/contrast-checker', '/tools/url-codec'],
 }
 
 export function getRelatedTools(path: string, limit = 5): ToolDefinition[] {
