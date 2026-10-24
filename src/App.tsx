@@ -324,7 +324,7 @@ function App() {
 
           <div className="stats-bar">
             <div className="stat-item">
-              <strong>4</strong>
+              <strong>{tools.length}</strong>
               <span>Useful tools</span>
             </div>
             <div className="stat-item">

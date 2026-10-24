@@ -2921,6 +2921,39 @@
 .related-tool-copy strong { overflow: hidden; color: var(--text); font-size: .82rem; text-overflow: ellipsis; white-space: nowrap; }
 .related-tool-copy > span { display: -webkit-box; overflow: hidden; color: var(--text-subtle); font-size: .72rem; line-height: 1.35; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 
+.color-tool { display: grid; gap: 20px; }
+.color-picker-panel { display: grid; grid-template-columns: minmax(160px, .8fr) minmax(220px, 1fr); align-items: center; gap: 20px; }
+.color-swatch-control { position: relative; display: flex; align-items: center; gap: 14px; color: var(--text); font-weight: 600; cursor: pointer; }
+.color-preview { display: block; width: 74px; height: 74px; border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+.color-swatch-control input { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; opacity: 0; cursor: pointer; }
+.color-swatch-control:focus-within .color-preview { outline: 2px solid var(--green); outline-offset: 3px; }
+.color-hex-field, .contrast-controls label { display: grid; gap: 8px; color: var(--text-muted); font-size: .88rem; }
+.color-hex-field input, .contrast-controls input { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 9px; background: var(--bg-raised); color: var(--text); font: inherit; }
+.color-hex-field input:focus-visible, .contrast-controls input:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.color-hex-field input[aria-invalid="true"], .contrast-controls input[aria-invalid="true"] { border-color: var(--red); }
+.color-values { display: grid; gap: 10px; }
+.color-value { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-raised); }
+.color-value > span { width: 42px; color: var(--text-subtle); font-size: .75rem; font-weight: 700; }
+.color-value code { min-width: 0; flex: 1; overflow-wrap: anywhere; color: var(--text); font-size: .9rem; }
+.contrast-controls { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+.contrast-preview { display: grid; min-height: 145px; align-content: center; gap: 10px; padding: 24px; border: 1px solid var(--border); border-radius: 12px; }
+.contrast-preview strong { font-size: 1.4rem; }
+.contrast-result { display: flex; align-items: baseline; gap: 12px; }
+.contrast-result strong { color: var(--text); font-size: 2rem; font-variant-numeric: tabular-nums; }
+.contrast-result span { color: var(--text-muted); }
+.contrast-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+.contrast-badges span { padding: 8px 11px; border: 1px solid currentColor; border-radius: 999px; font-size: .82rem; }
+.contrast-badges .is-pass { color: var(--green); }
+.contrast-badges .is-fail { color: var(--red); }
+.qr-tool .tool-textarea { display: block; width: 100%; resize: vertical; }
+.qr-input-label { color: var(--text); font-size: .9rem; font-weight: 600; }
+.qr-character-count { margin-top: -14px; color: var(--text-subtle); font-size: .78rem; text-align: right; }
+.qr-canvas-wrap { display: grid; min-height: 240px; place-items: center; padding: 20px; border: 1px dashed var(--border); border-radius: 12px; background: var(--bg-raised); }
+.qr-canvas-wrap canvas { display: none; max-width: 100%; height: auto; border-radius: 8px; }
+.qr-canvas-wrap canvas.is-visible { display: block; }
+.qr-empty { display: grid; justify-items: center; gap: 10px; color: var(--text-subtle); text-align: center; }
+@media (max-width: 640px) { .color-picker-panel, .contrast-controls { grid-template-columns: minmax(0,1fr); } .color-value { flex-wrap: wrap; } .color-value code { flex-basis: calc(100% - 60px); } }
+
 @media (max-width: 900px) { .tool-carousel { grid-auto-columns: minmax(230px, calc((100% - 36px) / 3)); } }
 @media (max-width: 640px) { .tool-carousel { grid-auto-columns: minmax(240px, 82%); gap: 12px; } .tool-section-rows { gap: 30px; } .tool-row-heading h3 { font-size: 1rem; } .related-tools-list { grid-template-columns: minmax(0,1fr); } }
 @media (prefers-reduced-motion: reduce) {
