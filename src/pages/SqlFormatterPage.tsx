@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Copy, RotateCcw } from 'lucide-react'
 import ToolLayout from '../components/layout/ToolLayout'
+import ThemedSelect from '../components/tools/ThemedSelect'
 import ActionButton from '../components/ui/ActionButton'
 import ToolTextarea from '../components/tools/ToolTextarea'
 import { useActionFeedback } from '../hooks/useActionFeedback'
@@ -51,14 +52,13 @@ function SqlFormatterPage() {
     <ToolLayout title="SQL Formatter" description="Format SQL queries with a dialect-aware formatter. Queries stay in your browser.">
       <div className="data-tool">
         <div className="data-tool-toolbar">
-          <label htmlFor="sql-dialect">SQL dialect</label>
-          <select id="sql-dialect" value={dialect} onChange={(event) => setDialect(event.target.value as SqlDialect)}>
-            <option value="sql">Standard SQL</option>
-            <option value="postgresql">PostgreSQL</option>
-            <option value="mysql">MySQL</option>
-            <option value="sqlite">SQLite</option>
-            <option value="transactsql">SQL Server (T-SQL)</option>
-          </select>
+          <ThemedSelect id="sql-dialect" label="SQL dialect" value={dialect} onChange={(value) => setDialect(value as SqlDialect)} options={[
+            { value: 'sql', label: 'Standard SQL' },
+            { value: 'postgresql', label: 'PostgreSQL' },
+            { value: 'mysql', label: 'MySQL' },
+            { value: 'sqlite', label: 'SQLite' },
+            { value: 'transactsql', label: 'SQL Server (T-SQL)' },
+          ]} />
         </div>
         <p className="data-tool-note">Formatting adjusts layout and keyword casing. It does not validate or execute SQL.</p>
         <div className="data-tool-editors">

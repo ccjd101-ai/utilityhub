@@ -3,6 +3,7 @@ import { Copy, RotateCcw } from 'lucide-react'
 import ToolLayout from '../components/layout/ToolLayout'
 import ActionButton from '../components/ui/ActionButton'
 import ToolTextarea from '../components/tools/ToolTextarea'
+import ThemedSelect from '../components/tools/ThemedSelect'
 import { useActionFeedback } from '../hooks/useActionFeedback'
 import { csvToJson, jsonToCsv } from '../tools/csvJson'
 
@@ -53,11 +54,10 @@ function CsvJsonPage() {
     <ToolLayout title="CSV ↔ JSON Converter" description="Convert CSV and JSON data in either direction, with proper handling for quoted fields and multiline values.">
       <div className="data-tool">
         <div className="data-tool-toolbar">
-          <label htmlFor="csv-json-direction">Conversion</label>
-          <select id="csv-json-direction" value={direction} onChange={(event) => { setDirection(event.target.value as typeof direction); setOutput(''); setMessage('') }}>
-            <option value="csv-json">CSV to JSON</option>
-            <option value="json-csv">JSON to CSV</option>
-          </select>
+          <ThemedSelect id="csv-json-direction" label="Conversion" value={direction} onChange={(value) => { setDirection(value as typeof direction); setOutput(''); setMessage('') }} options={[
+            { value: 'csv-json', label: 'CSV to JSON' },
+            { value: 'json-csv', label: 'JSON to CSV' },
+          ]} />
         </div>
         <p className="data-tool-note">CSV input uses its first row as column headers, and CSV cells are kept as strings. JSON input must be an array of flat objects; nested values are not representable in CSV.</p>
         <div className="data-tool-editors">

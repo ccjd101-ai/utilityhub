@@ -3,6 +3,7 @@ import { Copy, RotateCcw } from 'lucide-react'
 import ToolLayout from '../components/layout/ToolLayout'
 import ActionButton from '../components/ui/ActionButton'
 import ToolTextarea from '../components/tools/ToolTextarea'
+import ThemedSelect from '../components/tools/ThemedSelect'
 import { useActionFeedback } from '../hooks/useActionFeedback'
 import { transformLines, type LineOperation } from '../tools/lineTools'
 
@@ -47,12 +48,11 @@ function LineToolsPage() {
     <ToolLayout title="Line Tools" description="Remove duplicate lines or sort a list of lines, with optional case-insensitive deduplication.">
       <div className="writing-tool">
         <div className="data-tool-toolbar">
-          <label htmlFor="line-operation">Operation</label>
-          <select id="line-operation" value={operation} onChange={(event) => setOperation(event.target.value as LineOperation)}>
-            <option value="unique">Remove duplicate lines</option>
-            <option value="sort-ascending">Sort A to Z</option>
-            <option value="sort-descending">Sort Z to A</option>
-          </select>
+          <ThemedSelect id="line-operation" label="Operation" value={operation} onChange={(value) => setOperation(value as LineOperation)} options={[
+            { value: 'unique', label: 'Remove duplicate lines' },
+            { value: 'sort-ascending', label: 'Sort A to Z' },
+            { value: 'sort-descending', label: 'Sort Z to A' },
+          ]} />
         </div>
         {operation === 'unique' && (
           <label className="line-case-option">

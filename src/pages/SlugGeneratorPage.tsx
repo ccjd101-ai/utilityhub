@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Copy, RotateCcw } from 'lucide-react'
 import ToolLayout from '../components/layout/ToolLayout'
 import ActionButton from '../components/ui/ActionButton'
+import ThemedSelect from '../components/tools/ThemedSelect'
 import { useActionFeedback } from '../hooks/useActionFeedback'
 import { createSlug, type SlugSeparator } from '../tools/slug'
 
@@ -37,12 +38,11 @@ function SlugGeneratorPage() {
   return (
     <ToolLayout title="Slug Generator" description="Turn a title or phrase into a clean, URL-friendly slug, right in your browser.">
       <div className="writing-tool">
-        <div className="data-tool-field slug-separator">
-          <label htmlFor="slug-separator">Word separator</label>
-          <select id="slug-separator" value={separator} onChange={(event) => setSeparator(event.target.value as SlugSeparator)}>
-            <option value="-">Hyphen (-)</option>
-            <option value="_">Underscore (_)</option>
-          </select>
+        <div className="slug-separator">
+          <ThemedSelect id="slug-separator" label="Word separator" value={separator} onChange={(value) => setSeparator(value as SlugSeparator)} options={[
+            { value: '-', label: 'Hyphen (-)' },
+            { value: '_', label: 'Underscore (_)' },
+          ]} />
         </div>
         <div className="writing-diff-editor">
           <label htmlFor="slug-input">Title or phrase</label>

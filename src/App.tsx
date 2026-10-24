@@ -13,7 +13,7 @@ import {
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import { tools } from './tools/registry'
+import { toolCategories, tools } from './tools/registry'
 import { useNavigate } from 'react-router'
 
 
@@ -316,7 +316,9 @@ function App() {
                     <span className="tool-icon">
                       <Icon size={29} strokeWidth={2.2} />
                     </span>
-                    <span className="tool-category">{tool.category}</span>
+                    <span className="tool-category">
+                      {toolCategories.find((category) => category.id === tool.category)?.label ?? tool.category}
+                    </span>
                   </div>
                   <h3>{tool.title}</h3>
                   <p>{tool.description}</p>

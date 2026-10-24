@@ -11,6 +11,7 @@ import { Link } from 'react-router'
 import ToolLayout from '../components/layout/ToolLayout'
 import ActionButton from '../components/ui/ActionButton'
 import CopyButton from '../components/ui/CopyButton'
+import ThemedSelect from '../components/tools/ThemedSelect'
 import { useActionFeedback } from '../hooks/useActionFeedback'
 import { useRecentResults } from '../hooks/useRecentResults'
 import { tools } from '../tools/registry'
@@ -235,15 +236,16 @@ function GuidGeneratorPage() {
           </div>
 
           <div className="guid-field">
-            <label htmlFor="guid-case">Letter casing</label>
-            <select
+            <ThemedSelect
               id="guid-case"
+              label="Letter casing"
               value={casing}
-              onChange={(event) => setCasing(event.target.value as GuidCase)}
-            >
-              <option value="lowercase">Lowercase</option>
-              <option value="uppercase">Uppercase</option>
-            </select>
+              onChange={(value) => setCasing(value as GuidCase)}
+              options={[
+                { value: 'lowercase', label: 'Lowercase' },
+                { value: 'uppercase', label: 'Uppercase' },
+              ]}
+            />
           </div>
 
           <fieldset className="guid-options">

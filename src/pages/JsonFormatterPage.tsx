@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AlignLeft, Copy, Minimize2, Trash2 } from 'lucide-react'
 import ToolLayout from '../components/layout/ToolLayout'
+import ThemedSelect from '../components/tools/ThemedSelect'
 import ActionButton from '../components/ui/ActionButton'
 import { useActionFeedback } from '../hooks/useActionFeedback'
 import { transformJson, type JsonIndentation } from '../tools/jsonFormatter'
@@ -65,17 +66,16 @@ function JsonFormatterPage() {
       <div className="json-formatter">
         <div className="json-formatter-toolbar">
           <div className="json-formatter-indent">
-            <label htmlFor="json-indentation">Indentation</label>
-            <select
+            <ThemedSelect
               id="json-indentation"
-              value={indentation}
-              onChange={(event) =>
-                setIndentation(Number(event.target.value) as JsonIndentation)
-              }
-            >
-              <option value={2}>2 spaces</option>
-              <option value={4}>4 spaces</option>
-            </select>
+              label="Indentation"
+              value={String(indentation)}
+              onChange={(value) => setIndentation(Number(value) as JsonIndentation)}
+              options={[
+                { value: '2', label: '2 spaces' },
+                { value: '4', label: '4 spaces' },
+              ]}
+            />
           </div>
           <span className="json-formatter-privacy">
             Processing stays in your browser

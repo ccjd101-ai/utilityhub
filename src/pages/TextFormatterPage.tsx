@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Copy, WandSparkles, X } from 'lucide-react'
 import ToolLayout from '../components/layout/ToolLayout'
+import ThemedSelect from '../components/tools/ThemedSelect'
 import ActionButton from '../components/ui/ActionButton'
 import { useActionFeedback } from '../hooks/useActionFeedback'
 import { formatText, type TextCase } from '../tools/textFormatter'
@@ -52,30 +53,27 @@ function TextFormatterPage() {
       <div className="text-formatter">
         <div className="text-formatter-options">
           <div className="text-formatter-field">
-            <label htmlFor="text-casing">Letter case</label>
-            <select
+            <ThemedSelect
               id="text-casing"
+              label="Letter case"
               value={casing}
-              onChange={(event) => setCasing(event.target.value as TextCase)}
-            >
-              <optgroup label="Basic casing">
-                <option value="unchanged">Keep as entered</option>
-                <option value="uppercase">UPPERCASE</option>
-                <option value="lowercase">lowercase</option>
-                <option value="title">Title Case</option>
-                <option value="sentence">Sentence case</option>
-              </optgroup>
-              <optgroup label="Developer casing">
-                <option value="camel">camelCase</option>
-                <option value="pascal">PascalCase</option>
-                <option value="snake">snake_case</option>
-                <option value="constant">CONSTANT_CASE</option>
-                <option value="kebab">kebab-case</option>
-                <option value="screaming-kebab">SCREAMING-KEBAB-CASE</option>
-                <option value="train">Train-Case</option>
-                <option value="dot">dot.case</option>
-              </optgroup>
-            </select>
+              onChange={(value) => setCasing(value as TextCase)}
+              options={[
+                { group: 'Basic casing', value: 'unchanged', label: 'Keep as entered' },
+                { group: 'Basic casing', value: 'uppercase', label: 'UPPERCASE' },
+                { group: 'Basic casing', value: 'lowercase', label: 'lowercase' },
+                { group: 'Basic casing', value: 'title', label: 'Title Case' },
+                { group: 'Basic casing', value: 'sentence', label: 'Sentence case' },
+                { group: 'Developer casing', value: 'camel', label: 'camelCase' },
+                { group: 'Developer casing', value: 'pascal', label: 'PascalCase' },
+                { group: 'Developer casing', value: 'snake', label: 'snake_case' },
+                { group: 'Developer casing', value: 'constant', label: 'CONSTANT_CASE' },
+                { group: 'Developer casing', value: 'kebab', label: 'kebab-case' },
+                { group: 'Developer casing', value: 'screaming-kebab', label: 'SCREAMING-KEBAB-CASE' },
+                { group: 'Developer casing', value: 'train', label: 'Train-Case' },
+                { group: 'Developer casing', value: 'dot', label: 'dot.case' },
+              ]}
+            />
           </div>
 
           <fieldset className="text-formatter-toggles">

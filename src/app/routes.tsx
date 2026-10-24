@@ -21,6 +21,10 @@ const PlainTextDiffPage = lazy(() => import('../pages/PlainTextDiffPage'))
 const MarkdownPreviewPage = lazy(() => import('../pages/MarkdownPreviewPage'))
 const SlugGeneratorPage = lazy(() => import('../pages/SlugGeneratorPage'))
 const LineToolsPage = lazy(() => import('../pages/LineToolsPage'))
+const UnixTimestampPage = lazy(() => import('../pages/UnixTimestampPage'))
+const TimeZoneConverterPage = lazy(() => import('../pages/TimeZoneConverterPage'))
+const DateDifferencePage = lazy(() => import('../pages/DateDifferencePage'))
+const DateTimeFormatPage = lazy(() => import('../pages/DateTimeFormatPage'))
 
 function ToolPlaceholder() {
   const location = useLocation()
@@ -81,6 +85,14 @@ function AppRoutes() {
           <SlugGeneratorPage />
         ) : tool.href === '/tools/line-tools' ? (
           <LineToolsPage />
+        ) : tool.href === '/tools/unix-timestamp' ? (
+          <UnixTimestampPage />
+        ) : tool.href === '/tools/time-zone-converter' ? (
+          <TimeZoneConverterPage />
+        ) : tool.href === '/tools/date-difference' ? (
+          <DateDifferencePage />
+        ) : tool.href === '/tools/datetime-format' ? (
+          <DateTimeFormatPage />
         ) : tool.href === '/tools/text-formatter' ? (
           <TextFormatterPage />
         ) : tool.href === '/tools/json-diff' ? (
