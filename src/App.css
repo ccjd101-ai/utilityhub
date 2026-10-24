@@ -4028,6 +4028,363 @@
   }
 }
 
+/* Text & Writing tools */
+.writing-tool {
+  display: grid;
+  gap: 1.2rem;
+  min-width: 0;
+}
+
+.writing-tool-note,
+.writing-tool-status {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.writing-tool-status {
+  min-height: 1.3rem;
+  color: var(--green);
+}
+
+.writing-tool-status.is-error {
+  color: #ff9085;
+}
+
+.text-counter-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.text-counter-metrics > div {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.text-counter-metrics dt {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.text-counter-metrics dd {
+  margin: 0;
+  color: var(--green);
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.writing-diff-inputs,
+.markdown-workspace {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  min-width: 0;
+}
+
+.writing-diff-editor {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.writing-diff-editor > label,
+.markdown-preview > h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.writing-diff-editor textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 19rem;
+  padding: 1rem;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.writing-diff-editor textarea::placeholder {
+  color: var(--text-subtle);
+}
+
+.writing-diff-editor textarea:focus-visible,
+.writing-tool select:focus-visible,
+.writing-tool input:focus-visible,
+.writing-tool button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+.writing-diff-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.writing-diff-label-row label {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.writing-text-action {
+  display: inline-flex;
+  min-height: 2.15rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: fit-content;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.writing-text-action:not(:disabled):hover {
+  border-color: var(--border);
+  color: var(--green);
+}
+
+.writing-text-action:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.writing-tool-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.writing-diff-results {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.writing-diff-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.writing-diff-heading h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.writing-diff-legend {
+  display: flex;
+  gap: 0.8rem;
+  font-size: 0.78rem;
+}
+
+.writing-diff-legend .is-added {
+  color: var(--green);
+}
+
+.writing-diff-legend .is-removed {
+  color: var(--red);
+}
+
+.writing-diff-results pre {
+  max-height: 34rem;
+  margin: 0;
+  padding: 1rem;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--bg);
+  color: var(--text-muted);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.writing-diff-part.is-added,
+.writing-diff-part.is-removed {
+  display: inline-block;
+  width: 100%;
+  padding-inline: 0.35rem;
+}
+
+.writing-diff-part.is-added {
+  background: rgba(66, 230, 164, 0.1);
+  color: #8af2c4;
+}
+
+.writing-diff-part.is-removed {
+  background: rgba(255, 112, 95, 0.1);
+  color: #ff9b90;
+  text-decoration: line-through;
+}
+
+.markdown-preview {
+  display: grid;
+  align-content: start;
+  gap: 0.8rem;
+  min-width: 0;
+  min-height: 19rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.markdown-rendered {
+  min-width: 0;
+  color: var(--text);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.markdown-rendered > :first-child {
+  margin-top: 0;
+}
+
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4 {
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.markdown-rendered a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.markdown-rendered pre,
+.markdown-rendered code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+}
+
+.markdown-rendered pre {
+  max-width: 100%;
+  padding: 0.9rem;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  background: var(--bg);
+}
+
+.markdown-rendered :not(pre) > code {
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.3rem;
+  background: var(--bg);
+}
+
+.markdown-rendered blockquote {
+  margin-inline: 0;
+  padding-inline-start: 1rem;
+  border-inline-start: 3px solid var(--green);
+  color: var(--text-muted);
+}
+
+.markdown-rendered img {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown-empty {
+  margin: 0;
+  color: var(--text-subtle);
+}
+
+.slug-separator {
+  max-width: 20rem;
+}
+
+.slug-result {
+  display: grid;
+  gap: 0.6rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--bg);
+}
+
+.slug-result > span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.slug-result code {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--green);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+}
+
+.line-case-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.line-case-option input {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  accent-color: var(--green);
+}
+
+@media (max-width: 760px) {
+  .text-counter-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .writing-diff-inputs,
+  .markdown-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .writing-diff-editor textarea {
+    min-height: 15rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .text-counter-metrics {
+    gap: 0.5rem;
+  }
+
+  .text-counter-metrics > div {
+    padding: 0.75rem;
+  }
+}
+
 /* Text Formatter */
 .text-formatter {
   display: grid;
