@@ -24,6 +24,9 @@
   ScanQrCode,
   Contrast,
   ImageDown,
+  Percent,
+  Ruler,
+  ReceiptText,
 } from 'lucide-react'
 import type { ToolCategory, ToolDefinition } from './types'
 
@@ -253,6 +256,30 @@ export const tools: ToolDefinition[] = [
     icon: ImageDown,
     accent: 'red',
   },
+  {
+    title: 'Percentage Calculator',
+    description: 'Calculate percentages, find what percent one value is of another, or compare changes.',
+    category: 'CALCULATORS_CONVERTERS',
+    href: '/tools/percentage-calculator',
+    icon: Percent,
+    accent: 'green',
+  },
+  {
+    title: 'Unit Converter',
+    description: 'Convert common length, weight, volume, and temperature units.',
+    category: 'CALCULATORS_CONVERTERS',
+    href: '/tools/unit-converter',
+    icon: Ruler,
+    accent: 'blue',
+  },
+  {
+    title: 'Tip Calculator',
+    description: 'Calculate a tip, the full bill, and a fair per-person split.',
+    category: 'CALCULATORS_CONVERTERS',
+    href: '/tools/tip-calculator',
+    icon: ReceiptText,
+    accent: 'orange',
+  },
 ]
 
 export function getToolByPath(path: string): ToolDefinition | undefined {
@@ -287,6 +314,9 @@ const relatedToolPaths: Record<string, string[]> = {
   '/tools/contrast-checker': ['/tools/color-converter', '/tools/image-compressor', '/tools/qr-code-generator', '/tools/markdown-preview'],
   '/tools/qr-code-generator': ['/tools/image-compressor', '/tools/color-converter', '/tools/contrast-checker', '/tools/url-codec'],
   '/tools/image-compressor': ['/tools/color-converter', '/tools/contrast-checker', '/tools/qr-code-generator'],
+  '/tools/percentage-calculator': ['/tools/tip-calculator', '/tools/unit-converter', '/tools/date-difference'],
+  '/tools/unit-converter': ['/tools/percentage-calculator', '/tools/tip-calculator', '/tools/unix-timestamp'],
+  '/tools/tip-calculator': ['/tools/percentage-calculator', '/tools/unit-converter', '/tools/date-difference'],
 }
 
 export function getRelatedTools(path: string, limit = 5): ToolDefinition[] {
