@@ -25,6 +25,9 @@ const UnixTimestampPage = lazy(() => import('../pages/UnixTimestampPage'))
 const TimeZoneConverterPage = lazy(() => import('../pages/TimeZoneConverterPage'))
 const DateDifferencePage = lazy(() => import('../pages/DateDifferencePage'))
 const DateTimeFormatPage = lazy(() => import('../pages/DateTimeFormatPage'))
+const PasswordGeneratorPage = lazy(() => import('../pages/PasswordGeneratorPage'))
+const Sha256Page = lazy(() => import('../pages/Sha256Page'))
+const UuidValidatorPage = lazy(() => import('../pages/UuidValidatorPage'))
 
 function ToolPlaceholder() {
   const location = useLocation()
@@ -93,6 +96,12 @@ function AppRoutes() {
           <DateDifferencePage />
         ) : tool.href === '/tools/datetime-format' ? (
           <DateTimeFormatPage />
+        ) : tool.href === '/tools/password-generator' ? (
+          <PasswordGeneratorPage />
+        ) : tool.href === '/tools/sha256' ? (
+          <Sha256Page />
+        ) : tool.href === '/tools/uuid-validator' ? (
+          <UuidValidatorPage />
         ) : tool.href === '/tools/text-formatter' ? (
           <TextFormatterPage />
         ) : tool.href === '/tools/json-diff' ? (

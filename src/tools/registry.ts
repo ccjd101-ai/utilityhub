@@ -1,4 +1,5 @@
 ﻿import {
+  BadgeCheck,
   Binary,
   Braces,
   CodeXml,
@@ -14,6 +15,7 @@
   KeyRound,
   Link,
   ListFilter,
+  LockKeyhole,
   FileText,
   Regex,
   WholeWord,
@@ -190,6 +192,30 @@ export const tools: ToolDefinition[] = [
     href: '/tools/datetime-format',
     icon: CalendarClock,
     accent: 'red',
+  },
+  {
+    title: 'Secure Password Generator',
+    description: 'Generate customizable passwords locally with browser cryptographic randomness.',
+    category: 'SECURITY_HASHING',
+    href: '/tools/password-generator',
+    icon: LockKeyhole,
+    accent: 'green',
+  },
+  {
+    title: 'SHA-256 Hash Generator',
+    description: 'Calculate a SHA-256 text digest locally in your browser.',
+    category: 'SECURITY_HASHING',
+    href: '/tools/sha256',
+    icon: Hash,
+    accent: 'blue',
+  },
+  {
+    title: 'UUID/GUID Validator',
+    description: 'Check UUID/GUID text formatting without claiming verification.',
+    category: 'SECURITY_HASHING',
+    href: '/tools/uuid-validator',
+    icon: BadgeCheck,
+    accent: 'orange',
   },
 ]
 
