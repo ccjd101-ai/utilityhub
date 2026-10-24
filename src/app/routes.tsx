@@ -1,4 +1,5 @@
-﻿import { Link, Navigate, useLocation, useRoutes } from 'react-router'
+﻿import { lazy, Suspense } from 'react'
+import { Link, Navigate, useLocation, useRoutes } from 'react-router'
 import { getToolByPath, tools } from '../tools/registry'
 import ToolLayout from '../components/layout/ToolLayout'
 import NotFoundPage from '../pages/NotFoundPage'
@@ -7,6 +8,14 @@ import GuidGeneratorPage from '../pages/GuidGeneratorPage'
 import JsonDiffPage from '../pages/JsonDiffPage'
 import JsonFormatterPage from '../pages/JsonFormatterPage'
 import TextFormatterPage from '../pages/TextFormatterPage'
+
+const Base64Page = lazy(() => import('../pages/Base64Page'))
+const CsvJsonPage = lazy(() => import('../pages/CsvJsonPage'))
+const JwtDecoderPage = lazy(() => import('../pages/JwtDecoderPage'))
+const RegexTesterPage = lazy(() => import('../pages/RegexTesterPage'))
+const SqlFormatterPage = lazy(() => import('../pages/SqlFormatterPage'))
+const UrlCodecPage = lazy(() => import('../pages/UrlCodecPage'))
+const YamlJsonPage = lazy(() => import('../pages/YamlJsonPage'))
 
 function ToolPlaceholder() {
   const location = useLocation()
@@ -43,7 +52,21 @@ function AppRoutes() {
     ...tools.map((tool) => ({
       path: tool.href,
       element:
-        tool.href === '/tools/text-formatter' ? (
+        tool.href === '/tools/base64' ? (
+          <Base64Page />
+        ) : tool.href === '/tools/url-codec' ? (
+          <UrlCodecPage />
+        ) : tool.href === '/tools/jwt-decoder' ? (
+          <JwtDecoderPage />
+        ) : tool.href === '/tools/regex-tester' ? (
+          <RegexTesterPage />
+        ) : tool.href === '/tools/sql-formatter' ? (
+          <SqlFormatterPage />
+        ) : tool.href === '/tools/csv-json' ? (
+          <CsvJsonPage />
+        ) : tool.href === '/tools/yaml-json' ? (
+          <YamlJsonPage />
+        ) : tool.href === '/tools/text-formatter' ? (
           <TextFormatterPage />
         ) : tool.href === '/tools/json-diff' ? (
           <JsonDiffPage />
@@ -61,7 +84,17 @@ function AppRoutes() {
     },
   ])
 
-  return routes ?? <Navigate to="/" replace />
+  return (
+    <Suspense
+      fallback={
+        <div className="tool-loading" role="status" aria-live="polite">
+          Loading utility…
+        </div>
+      }
+    >
+      {routes ?? <Navigate to="/" replace />}
+    </Suspense>
+  )
 }
 
 export default AppRoutes

@@ -1,4 +1,16 @@
-﻿import { Braces, FileDiff, Hash, Type } from 'lucide-react'
+﻿import {
+  Binary,
+  Braces,
+  CodeXml,
+  Database,
+  FileDiff,
+  FileJson,
+  Hash,
+  KeyRound,
+  Link,
+  Regex,
+  Type,
+} from 'lucide-react'
 import type { ToolDefinition } from './types'
 
 export const tools: ToolDefinition[] = [
@@ -17,6 +29,62 @@ export const tools: ToolDefinition[] = [
     href: '/tools/json-diff',
     icon: FileDiff,
     accent: 'red',
+  },
+  {
+    title: 'Base64 Encoder / Decoder',
+    description: 'Encode text to Base64 or decode Base64 as Unicode text.',
+    category: 'DEVELOPERS',
+    href: '/tools/base64',
+    icon: Binary,
+    accent: 'blue',
+  },
+  {
+    title: 'URL Encoder / Decoder',
+    description: 'Encode or decode a URL or an individual URL component.',
+    category: 'DEVELOPERS',
+    href: '/tools/url-codec',
+    icon: Link,
+    accent: 'green',
+  },
+  {
+    title: 'JWT Decoder',
+    description: 'Inspect a JWT header and payload without verifying signatures.',
+    category: 'DEVELOPERS',
+    href: '/tools/jwt-decoder',
+    icon: KeyRound,
+    accent: 'orange',
+  },
+  {
+    title: 'Regex Tester',
+    description: 'Test JavaScript regular expressions and inspect matches.',
+    category: 'DEVELOPERS',
+    href: '/tools/regex-tester',
+    icon: Regex,
+    accent: 'red',
+  },
+  {
+    title: 'SQL Formatter',
+    description: 'Format SQL queries with a selectable database dialect.',
+    category: 'DEVELOPERS',
+    href: '/tools/sql-formatter',
+    icon: Database,
+    accent: 'blue',
+  },
+  {
+    title: 'CSV ↔ JSON Converter',
+    description: 'Convert CSV rows to JSON objects and back.',
+    category: 'DEVELOPERS',
+    href: '/tools/csv-json',
+    icon: FileJson,
+    accent: 'green',
+  },
+  {
+    title: 'YAML ↔ JSON Converter',
+    description: 'Convert YAML and JSON documents in either direction.',
+    category: 'DEVELOPERS',
+    href: '/tools/yaml-json',
+    icon: CodeXml,
+    accent: 'orange',
   },
   {
     title: 'Text Formatter',
