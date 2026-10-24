@@ -4,6 +4,7 @@ import ToolLayout from '../components/layout/ToolLayout'
 import NotFoundPage from '../pages/NotFoundPage'
 import App from '../App'
 import GuidGeneratorPage from '../pages/GuidGeneratorPage'
+import JsonFormatterPage from '../pages/JsonFormatterPage'
 
 function ToolPlaceholder() {
   const location = useLocation()
@@ -40,7 +41,9 @@ function AppRoutes() {
     ...tools.map((tool) => ({
       path: tool.href,
       element:
-        tool.href === '/tools/guid-generator' ? (
+        tool.href === '/tools/json-formatter' ? (
+          <JsonFormatterPage />
+        ) : tool.href === '/tools/guid-generator' ? (
           <GuidGeneratorPage />
         ) : (
           <ToolPlaceholder />
