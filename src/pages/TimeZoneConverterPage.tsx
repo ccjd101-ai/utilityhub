@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import ToolLayout from '../components/layout/ToolLayout'
 import { formatDateTime, localTimeInZoneToDate } from '../tools/dateTime'
+import ThemedDateTimePicker from '../components/tools/ThemedDateTimePicker'
+import ThemedSelect from '../components/tools/ThemedSelect'
 
 const zones = [
   'UTC', 'America/Los_Angeles', 'America/Denver', 'America/Chicago', 'America/New_York',
@@ -36,9 +38,9 @@ function TimeZoneConverterPage() {
     <ToolLayout title="Time-Zone Converter" description="Convert a local date and time between IANA time zones. Daylight-saving gaps are detected; all conversion stays in your browser.">
       <div className="date-time-tool">
         <div className="date-time-fields date-time-fields-three">
-          <div className="date-time-field"><label htmlFor="timezone-input">Date and time</label><input id="timezone-input" type="datetime-local" value={dateTime} onChange={(event) => setDateTime(event.target.value)} /></div>
-          <div className="date-time-field"><label htmlFor="timezone-from">From time zone</label><select id="timezone-from" value={fromZone} onChange={(event) => setFromZone(event.target.value)}>{zoneOptions.map((zone) => <option key={zone} value={zone}>{zone}</option>)}</select></div>
-          <div className="date-time-field"><label htmlFor="timezone-to">To time zone</label><select id="timezone-to" value={toZone} onChange={(event) => setToZone(event.target.value)}>{zoneOptions.map((zone) => <option key={zone} value={zone}>{zone}</option>)}</select></div>
+          <ThemedDateTimePicker id="timezone-input" label="Date and time" value={dateTime} onChange={setDateTime} />
+          <ThemedSelect id="timezone-from" label="From time zone" value={fromZone} onChange={setFromZone} options={zoneOptions.map((zone) => ({ value: zone, label: zone }))} />
+          <ThemedSelect id="timezone-to" label="To time zone" value={toZone} onChange={setToZone} options={zoneOptions.map((zone) => ({ value: zone, label: zone }))} />
         </div>
         <button type="button" className="date-time-button" onClick={convert}>Convert time</button>
         <div className="date-time-results" aria-live="polite" aria-atomic="true">

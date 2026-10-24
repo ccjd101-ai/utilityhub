@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ToolLayout from '../components/layout/ToolLayout'
 import { calculateDateDifference } from '../tools/dateTime'
+import ThemedDateTimePicker from '../components/tools/ThemedDateTimePicker'
 
 function DateDifferencePage() {
   const [start, setStart] = useState('')
@@ -26,8 +27,8 @@ function DateDifferencePage() {
     <ToolLayout title="Date Difference Calculator" description="Calculate the elapsed time between two dates and times. Inputs use your browser's local time zone; no data is uploaded.">
       <div className="date-time-tool">
         <div className="date-time-fields">
-          <div className="date-time-field"><label htmlFor="difference-start">Start date and time</label><input id="difference-start" type="datetime-local" value={start} onChange={(event) => setStart(event.target.value)} /></div>
-          <div className="date-time-field"><label htmlFor="difference-end">End date and time</label><input id="difference-end" type="datetime-local" value={end} onChange={(event) => setEnd(event.target.value)} /></div>
+          <ThemedDateTimePicker id="difference-start" label="Start date and time" value={start} onChange={setStart} />
+          <ThemedDateTimePicker id="difference-end" label="End date and time" value={end} onChange={setEnd} />
         </div>
         <button type="button" className="date-time-button" onClick={calculate}>Calculate difference</button>
         {result && <div className="date-time-results date-difference-results" aria-live="polite" aria-atomic="true">

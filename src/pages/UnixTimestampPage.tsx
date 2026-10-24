@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { convertTimestamp, type TimestampUnit } from '../tools/dateTime'
 import ToolLayout from '../components/layout/ToolLayout'
+import ThemedSelect from '../components/tools/ThemedSelect'
 
 function UnixTimestampPage() {
   const [input, setInput] = useState('')
@@ -30,13 +31,18 @@ function UnixTimestampPage() {
           <label htmlFor="unix-timestamp">Unix timestamp</label>
           <input id="unix-timestamp" inputMode="decimal" value={input} onChange={(event) => setInput(event.target.value)} placeholder="e.g. 1700000000" />
         </div>
-        <div className="date-time-field date-time-narrow">
-          <label htmlFor="unix-unit">Timestamp unit</label>
-          <select id="unix-unit" value={unit} onChange={(event) => setUnit(event.target.value as TimestampUnit | 'auto')}>
-            <option value="auto">Detect automatically</option>
-            <option value="seconds">Seconds</option>
-            <option value="milliseconds">Milliseconds</option>
-          </select>
+        <div className="date-time-narrow">
+          <ThemedSelect
+            id="unix-unit"
+            label="Timestamp unit"
+            value={unit}
+            onChange={(value) => setUnit(value as TimestampUnit | 'auto')}
+            options={[
+              { value: 'auto', label: 'Detect automatically' },
+              { value: 'seconds', label: 'Seconds' },
+              { value: 'milliseconds', label: 'Milliseconds' },
+            ]}
+          />
         </div>
         <div className="date-time-results" aria-live="polite" aria-atomic="true">
           <div><span>ISO 8601 (UTC)</span><output>{result?.iso ?? 'Converted date appears here.'}</output></div>
