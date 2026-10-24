@@ -4512,6 +4512,201 @@
   min-height: 0;
 }
 
+/* Security & Hashing tools */
+.security-tool {
+  display: grid;
+  gap: 1.15rem;
+  min-width: 0;
+}
+
+.security-length-field {
+  max-width: 18rem;
+}
+
+.security-tool .data-tool-field input,
+.security-password-input-row input {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.security-tool .data-tool-field input:focus-visible,
+.security-password-input-row input:focus-visible,
+.security-reveal-button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+.security-character-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1.25rem;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+}
+
+.security-character-options legend {
+  padding: 0 0.4rem;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.security-character-options label {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: 0.55rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.security-character-options input {
+  flex: 0 0 auto;
+  margin-top: 0.16rem;
+  accent-color: var(--green);
+}
+
+.security-character-options code {
+  color: var(--text-subtle);
+  font-size: 0.78rem;
+}
+
+.security-ambiguous-option {
+  grid-column: 1 / -1;
+}
+
+.security-password-field {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.security-password-field > label {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.security-password-input-row {
+  display: flex;
+  min-width: 0;
+  gap: 0.5rem;
+}
+
+.security-password-input-row input {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.025em;
+}
+
+.security-password-input-row input::placeholder,
+.security-tool .data-tool-field input::placeholder {
+  color: var(--text-subtle);
+}
+
+.security-reveal-button {
+  display: grid;
+  width: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.security-reveal-button:not(:disabled):hover {
+  border-color: rgba(66, 230, 164, 0.45);
+  color: var(--green);
+}
+
+.security-reveal-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.uuid-validation-result {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.uuid-validation-indicator {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--bg-raised);
+  color: var(--text-subtle);
+  font-weight: 700;
+}
+
+.uuid-validation-result > div {
+  display: grid;
+  min-width: 0;
+  gap: 0.3rem;
+}
+
+.uuid-validation-result strong {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.uuid-validation-result div > span {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.uuid-validation-result.is-valid {
+  border-color: rgba(66, 230, 164, 0.35);
+  background: rgba(66, 230, 164, 0.055);
+}
+
+.uuid-validation-result.is-valid .uuid-validation-indicator {
+  background: rgba(66, 230, 164, 0.15);
+  color: var(--green);
+}
+
+.uuid-validation-result.is-invalid {
+  border-color: rgba(255, 112, 95, 0.35);
+  background: rgba(255, 112, 95, 0.055);
+}
+
+.uuid-validation-result.is-invalid .uuid-validation-indicator {
+  background: rgba(255, 112, 95, 0.15);
+  color: var(--red);
+}
+
+@media (max-width: 640px) {
+  .security-character-options {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .security-ambiguous-option {
+    grid-column: auto;
+  }
+}
+
 @media (max-width: 760px) {
   .date-time-fields-three {
     grid-template-columns: repeat(2, minmax(0, 1fr));
