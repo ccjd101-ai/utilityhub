@@ -2,6 +2,7 @@
 import {
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Code2,
   Home,
   Menu,
@@ -9,6 +10,7 @@ import {
 } from 'lucide-react'
 import { Link, useLocation } from 'react-router'
 import { toolCategories, tools } from '../../tools/registry'
+import type { ToolCategory } from '../../tools/types'
 
 interface ToolSidebarProps {
   collapsed: boolean
@@ -21,6 +23,11 @@ function ToolSidebar({
 }: ToolSidebarProps) {
   const location = useLocation()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const activeCategory = tools.find((tool) => tool.href === location.pathname)?.category
+  const [expansion, setExpansion] = useState<{ pathname: string; category: ToolCategory | null }>({ pathname: location.pathname, category: activeCategory ?? toolCategories[0]?.id ?? null })
+  const expandedCategory = expansion.pathname === location.pathname
+    ? expansion.category
+    : activeCategory ?? toolCategories[0]?.id ?? null
 
   function closeMobileSidebar() {
     setMobileOpen(false)
@@ -122,16 +129,27 @@ function ToolSidebar({
 
             return (
               <section
-                className="tool-sidebar-category"
+                className={`tool-sidebar-category${expandedCategory === category.id ? ' is-expanded' : ''}`}
                 key={category.id}
                 aria-label={category.label}
               >
                 {!collapsed && (
                   <h2 className="tool-sidebar-category-title">
-                    {category.label}
+                    <button
+                      type="button"
+                      className="tool-sidebar-category-toggle"
+                      aria-expanded={expandedCategory === category.id}
+                      aria-controls={`sidebar-category-${category.id}`}
+                      onClick={() => setExpansion({ pathname: location.pathname, category: expandedCategory === category.id ? null : category.id })}
+                    >
+                      <span>{category.label}</span>
+                      <ChevronDown size={15} aria-hidden="true" />
+                    </button>
                   </h2>
                 )}
 
+                <div id={`sidebar-category-${category.id}`} className="tool-sidebar-category-items" aria-hidden={!collapsed && expandedCategory !== category.id}>
+                <div className="tool-sidebar-category-links">
                 {categoryTools.map((tool) => {
                   const Icon = tool.icon
                   const active = location.pathname === tool.href
@@ -148,6 +166,7 @@ function ToolSidebar({
                         .filter(Boolean)
                         .join(' ')}
                       aria-current={active ? 'page' : undefined}
+                      tabIndex={!collapsed && expandedCategory !== category.id ? -1 : undefined}
                       title={collapsed ? tool.title : undefined}
                       onClick={closeMobileSidebar}
                     >
@@ -162,6 +181,8 @@ function ToolSidebar({
                     </Link>
                   )
                 })}
+                </div>
+                </div>
               </section>
             )
           })}

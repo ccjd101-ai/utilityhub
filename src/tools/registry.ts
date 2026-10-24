@@ -222,3 +222,38 @@ export const tools: ToolDefinition[] = [
 export function getToolByPath(path: string): ToolDefinition | undefined {
   return tools.find((tool) => tool.href === path)
 }
+
+const relatedToolPaths: Record<string, string[]> = {
+  '/tools/json-formatter': ['/tools/json-diff', '/tools/yaml-json', '/tools/csv-json', '/tools/jwt-decoder', '/tools/sql-formatter'],
+  '/tools/json-diff': ['/tools/json-formatter', '/tools/plain-text-diff', '/tools/yaml-json', '/tools/csv-json'],
+  '/tools/guid-generator': ['/tools/uuid-validator', '/tools/password-generator', '/tools/sha256'],
+  '/tools/base64': ['/tools/url-codec', '/tools/jwt-decoder', '/tools/json-formatter'],
+  '/tools/url-codec': ['/tools/base64', '/tools/slug-generator', '/tools/jwt-decoder'],
+  '/tools/jwt-decoder': ['/tools/base64', '/tools/json-formatter', '/tools/sha256'],
+  '/tools/regex-tester': ['/tools/text-formatter', '/tools/text-counter', '/tools/plain-text-diff'],
+  '/tools/sql-formatter': ['/tools/json-formatter', '/tools/csv-json', '/tools/yaml-json'],
+  '/tools/csv-json': ['/tools/json-formatter', '/tools/yaml-json', '/tools/sql-formatter'],
+  '/tools/yaml-json': ['/tools/json-formatter', '/tools/csv-json', '/tools/json-diff'],
+  '/tools/text-formatter': ['/tools/text-counter', '/tools/plain-text-diff', '/tools/line-tools', '/tools/slug-generator', '/tools/markdown-preview'],
+  '/tools/text-counter': ['/tools/text-formatter', '/tools/plain-text-diff', '/tools/line-tools', '/tools/slug-generator'],
+  '/tools/plain-text-diff': ['/tools/json-diff', '/tools/text-formatter', '/tools/line-tools', '/tools/regex-tester'],
+  '/tools/markdown-preview': ['/tools/text-formatter', '/tools/slug-generator', '/tools/text-counter'],
+  '/tools/slug-generator': ['/tools/url-codec', '/tools/text-formatter', '/tools/markdown-preview'],
+  '/tools/line-tools': ['/tools/text-formatter', '/tools/text-counter', '/tools/plain-text-diff'],
+  '/tools/unix-timestamp': ['/tools/datetime-format', '/tools/date-difference', '/tools/time-zone-converter'],
+  '/tools/time-zone-converter': ['/tools/datetime-format', '/tools/unix-timestamp', '/tools/date-difference'],
+  '/tools/date-difference': ['/tools/datetime-format', '/tools/time-zone-converter', '/tools/unix-timestamp'],
+  '/tools/datetime-format': ['/tools/time-zone-converter', '/tools/unix-timestamp', '/tools/date-difference'],
+  '/tools/password-generator': ['/tools/sha256', '/tools/uuid-validator', '/tools/guid-generator'],
+  '/tools/sha256': ['/tools/password-generator', '/tools/jwt-decoder', '/tools/uuid-validator', '/tools/guid-generator'],
+  '/tools/uuid-validator': ['/tools/guid-generator', '/tools/password-generator', '/tools/sha256'],
+}
+
+export function getRelatedTools(path: string, limit = 5): ToolDefinition[] {
+  if (!Number.isInteger(limit) || limit <= 0) return []
+  return (relatedToolPaths[path] ?? [])
+    .filter((relatedPath) => relatedPath !== path)
+    .map((relatedPath) => getToolByPath(relatedPath))
+    .filter((tool): tool is ToolDefinition => Boolean(tool))
+    .slice(0, Math.min(limit, 5))
+}

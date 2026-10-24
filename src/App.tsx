@@ -15,6 +15,8 @@ import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import { toolCategories, tools } from './tools/registry'
 import { useNavigate } from 'react-router'
+import ToolCarousel from './components/tools/ToolCarousel'
+import { hasSeenIntro, markIntroSeen } from './app/introPersistence'
 
 
 const benefits = [
@@ -75,7 +77,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [introVisible, setIntroVisible] = useState(
-    () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !hasSeenIntro(),
   )
   const [typedLogo, setTypedLogo] = useState('')
   const [introMoving, setIntroMoving] = useState(false)
@@ -87,6 +89,7 @@ function App() {
 
   useEffect(() => {
     if (!introVisible) return
+    markIntroSeen()
 
     const logoName = 'UtilityHub'
     let currentIndex = 0
@@ -297,36 +300,10 @@ function App() {
             </p>
           </div>
 
-          <div
-            className="tool-grid"
-            aria-live="polite"
-            aria-relevant="additions removals"
-          >
-            {filteredTools.map((tool, index) => {
-              const Icon = tool.icon
-
-              return (
-                <a
-                  className={`tool-card accent-${tool.accent}`}
-                  href={tool.href}
-                  key={tool.title}
-                  style={{ animationDelay: `${index * 80}ms` }}
-                >
-                  <div className="tool-card-top">
-                    <span className="tool-icon">
-                      <Icon size={29} strokeWidth={2.2} />
-                    </span>
-                    <span className="tool-category">
-                      {toolCategories.find((category) => category.id === tool.category)?.label ?? tool.category}
-                    </span>
-                  </div>
-                  <h3>{tool.title}</h3>
-                  <p>{tool.description}</p>
-                  <span className="tool-card-arrow" aria-hidden="true">
-                    <ArrowRight size={18} />
-                  </span>
-                </a>
-              )
+          <div className="tool-section-rows" aria-live="polite" aria-relevant="additions removals">
+            {toolCategories.map((category) => {
+              const categoryTools = filteredTools.filter((tool) => tool.category === category.id)
+              return categoryTools.length > 0 ? <ToolCarousel key={category.id} title={category.label} tools={categoryTools} /> : null
             })}
           </div>
 
