@@ -3,6 +3,7 @@ import { Copy, RotateCcw } from 'lucide-react'
 import ToolLayout from '../components/layout/ToolLayout'
 import ActionButton from '../components/ui/ActionButton'
 import ToolTextarea from '../components/tools/ToolTextarea'
+import ThemedSelect from '../components/tools/ThemedSelect'
 import { useActionFeedback } from '../hooks/useActionFeedback'
 import { jsonToYaml, yamlToJson } from '../tools/yamlJson'
 
@@ -53,11 +54,10 @@ function YamlJsonPage() {
     <ToolLayout title="YAML ↔ JSON Converter" description="Convert YAML and JSON documents in either direction, with parse errors surfaced in your browser.">
       <div className="data-tool">
         <div className="data-tool-toolbar">
-          <label htmlFor="yaml-json-direction">Conversion</label>
-          <select id="yaml-json-direction" value={direction} onChange={(event) => { setDirection(event.target.value as typeof direction); setOutput(''); setMessage('') }}>
-            <option value="yaml-json">YAML to JSON</option>
-            <option value="json-yaml">JSON to YAML</option>
-          </select>
+          <ThemedSelect id="yaml-json-direction" label="Conversion" value={direction} onChange={(value) => { setDirection(value as typeof direction); setOutput(''); setMessage('') }} options={[
+            { value: 'yaml-json', label: 'YAML to JSON' },
+            { value: 'json-yaml', label: 'JSON to YAML' },
+          ]} />
         </div>
         <p className="data-tool-note">Uses the YAML 1.2 core schema and rejects duplicate mapping keys. Custom YAML tags and multiple documents are not supported.</p>
         <div className="data-tool-editors">

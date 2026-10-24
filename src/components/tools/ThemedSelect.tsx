@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react'
 export interface SelectOption {
   value: string
   label: string
+  group?: string
 }
 
 interface ThemedSelectProps {
@@ -29,6 +30,11 @@ function ThemedSelect({ id, label, value, options, onChange }: ThemedSelectProps
     document.addEventListener('mousedown', closeOnOutsideClick)
     return () => document.removeEventListener('mousedown', closeOnOutsideClick)
   }, [])
+
+  useEffect(() => {
+    if (!open) return
+    document.getElementById(`${listboxId}-option-${activeIndex}`)?.scrollIntoView({ block: 'nearest' })
+  }, [activeIndex, listboxId, open])
 
   function openList() {
     setActiveIndex(Math.max(0, options.findIndex((option) => option.value === value)))
@@ -67,7 +73,13 @@ function ThemedSelect({ id, label, value, options, onChange }: ThemedSelectProps
   }
 
   return (
-    <div className="themed-select" ref={rootRef}>
+    <div
+      className="themed-select"
+      ref={rootRef}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setOpen(false)
+      }}
+    >
       <label className="themed-select-label" htmlFor={id}>{label}</label>
       <button
         id={id}
@@ -87,19 +99,23 @@ function ThemedSelect({ id, label, value, options, onChange }: ThemedSelectProps
       {open && (
         <div id={listboxId} role="listbox" aria-label={label} className="themed-select-menu">
           {options.map((option, index) => (
-            <button
-              id={`${listboxId}-option-${index}`}
-              key={option.value}
-              type="button"
-              role="option"
-              aria-selected={option.value === value}
-              className={`themed-select-option${index === activeIndex ? ' is-active' : ''}${option.value === value ? ' is-selected' : ''}`}
-              onMouseEnter={() => setActiveIndex(index)}
-              onClick={() => selectOption(index)}
-            >
-              <span>{option.label}</span>
-              {option.value === value && <span className="themed-select-check" aria-hidden="true">✓</span>}
-            </button>
+            <div className="themed-select-option-group" key={option.value}>
+              {option.group && (index === 0 || options[index - 1]?.group !== option.group)
+                && <span className="themed-select-group-label">{option.group}</span>}
+              <button
+                id={`${listboxId}-option-${index}`}
+                type="button"
+                role="option"
+                tabIndex={-1}
+                aria-selected={option.value === value}
+                className={`themed-select-option${index === activeIndex ? ' is-active' : ''}${option.value === value ? ' is-selected' : ''}`}
+                onMouseEnter={() => setActiveIndex(index)}
+                onClick={() => selectOption(index)}
+              >
+                <span>{option.label}</span>
+                {option.value === value && <span className="themed-select-check" aria-hidden="true">✓</span>}
+              </button>
+            </div>
           ))}
         </div>
       )}

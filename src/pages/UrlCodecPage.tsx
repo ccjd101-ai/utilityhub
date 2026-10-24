@@ -3,6 +3,7 @@ import { Copy, RotateCcw } from 'lucide-react'
 import ToolLayout from '../components/layout/ToolLayout'
 import ActionButton from '../components/ui/ActionButton'
 import ToolTextarea from '../components/tools/ToolTextarea'
+import ThemedSelect from '../components/tools/ThemedSelect'
 import { useActionFeedback } from '../hooks/useActionFeedback'
 import { decodeUrl, encodeUrl, type UrlEncodingMode } from '../tools/urlCodec'
 
@@ -51,11 +52,10 @@ function UrlCodecPage() {
     <ToolLayout title="URL Encoder / Decoder" description="Encode or decode a full URL or an individual URL component without sending data anywhere.">
       <div className="data-tool">
         <div className="data-tool-toolbar">
-          <label htmlFor="url-mode">Encoding mode</label>
-          <select id="url-mode" value={mode} onChange={(event) => setMode(event.target.value as UrlEncodingMode)}>
-            <option value="component">URL component (encodes reserved characters)</option>
-            <option value="url">Full URL (preserves URL separators)</option>
-          </select>
+          <ThemedSelect id="url-mode" label="Encoding mode" value={mode} onChange={(value) => setMode(value as UrlEncodingMode)} options={[
+            { value: 'component', label: 'URL component (encodes reserved characters)' },
+            { value: 'url', label: 'Full URL (preserves URL separators)' },
+          ]} />
         </div>
         <div className="data-tool-editors">
           <ToolTextarea id="url-input" label="Input" value={input} onChange={setInput} placeholder="Type text or paste a URL…" />

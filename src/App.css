@@ -4023,6 +4023,14 @@
   overscroll-behavior: contain;
 }
 
+.data-tool-toolbar > .themed-select {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: auto minmax(12rem, 1fr);
+  align-items: center;
+  max-width: 38rem;
+}
+
 .themed-select-option {
   display: flex;
   min-height: 2.55rem;
@@ -4039,6 +4047,19 @@
   text-align: left;
   cursor: pointer;
   transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.themed-select-option-group {
+  display: grid;
+}
+
+.themed-select-group-label {
+  padding: 0.7rem 0.7rem 0.35rem;
+  color: var(--text-subtle);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .themed-select-option:hover,
@@ -4079,6 +4100,75 @@
   font-size: 0.97rem;
   font-weight: 650;
   text-align: center;
+}
+
+.themed-calendar-heading-pickers {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.themed-calendar-heading-pickers button,
+.themed-calendar-range {
+  min-width: 0;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid transparent;
+  border-radius: 0.45rem;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.themed-calendar-heading-pickers button:hover,
+.themed-calendar-range:hover {
+  border-color: var(--border);
+  background: var(--surface-hover);
+  color: var(--green);
+}
+
+.themed-calendar-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  min-height: 15rem;
+  align-content: center;
+}
+
+.themed-calendar-choice-grid button {
+  min-width: 0;
+  min-height: 3rem;
+  padding: 0.45rem 0.35rem;
+  border: 1px solid transparent;
+  border-radius: 0.55rem;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.themed-calendar-choice-grid button:hover {
+  border-color: rgba(66, 230, 164, 0.35);
+  background: rgba(66, 230, 164, 0.1);
+  color: var(--text);
+}
+
+.themed-calendar-choice-grid button.is-current {
+  border-color: var(--green);
+  background: rgba(66, 230, 164, 0.13);
+  color: var(--green);
+  font-weight: 700;
+}
+
+.themed-calendar-choice-grid button.is-adjacent {
+  color: var(--text-subtle);
 }
 
 .themed-calendar-nav,
@@ -4189,6 +4279,14 @@
   font: inherit;
   font-variant-numeric: tabular-nums;
   text-align: center;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.themed-calendar-time input::-webkit-inner-spin-button,
+.themed-calendar-time input::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
 }
 
 .themed-calendar-time-separator {
@@ -4206,6 +4304,7 @@
 }
 
 .themed-calendar-today,
+.themed-calendar-clear,
 .themed-calendar-done {
   min-height: 2.25rem;
   padding: 0.4rem 0.75rem;
@@ -4216,6 +4315,16 @@
   font: inherit;
   font-size: 0.82rem;
   cursor: pointer;
+}
+
+.themed-calendar-clear {
+  margin-right: auto;
+  border-color: transparent;
+  color: var(--text-subtle);
+}
+
+.themed-calendar-clear:hover {
+  color: var(--red);
 }
 
 .themed-calendar-today:hover {
