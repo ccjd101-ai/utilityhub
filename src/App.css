@@ -3827,3 +3827,70 @@
     transform: none;
   }
 }
+
+/* Layout safeguards for narrow screens, zoom, and keyboard users. */
+.site-header,
+.section,
+.footer-main,
+.tool-page-main {
+  min-width: 0;
+}
+
+.tool-card,
+.guid-results-list li,
+.guid-history-item {
+  min-width: 0;
+}
+
+.guid-results-list code {
+  overflow-wrap: anywhere;
+}
+
+.site-header a,
+.site-header button,
+.tool-sidebar a,
+.tool-sidebar button,
+.guid-actions button,
+.guid-history button {
+  touch-action: manipulation;
+}
+
+@media (max-width: 420px) {
+  .site-header {
+    padding-inline: 14px;
+  }
+
+  .header-actions .button-primary {
+    min-height: 44px;
+    padding-inline: 10px;
+  }
+
+  .hero-section {
+    padding-inline: 16px;
+  }
+
+  .section {
+    width: calc(100% - 32px);
+  }
+
+  .guid-history-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (forced-colors: active) {
+  .button,
+  .tool-card,
+  .tool-sidebar-link,
+  .guid-results-list li {
+    border: 1px solid ButtonText;
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  a:focus-visible {
+    outline: 2px solid Highlight;
+  }
+}
