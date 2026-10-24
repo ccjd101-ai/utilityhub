@@ -16,6 +16,11 @@ const RegexTesterPage = lazy(() => import('../pages/RegexTesterPage'))
 const SqlFormatterPage = lazy(() => import('../pages/SqlFormatterPage'))
 const UrlCodecPage = lazy(() => import('../pages/UrlCodecPage'))
 const YamlJsonPage = lazy(() => import('../pages/YamlJsonPage'))
+const TextCounterPage = lazy(() => import('../pages/TextCounterPage'))
+const PlainTextDiffPage = lazy(() => import('../pages/PlainTextDiffPage'))
+const MarkdownPreviewPage = lazy(() => import('../pages/MarkdownPreviewPage'))
+const SlugGeneratorPage = lazy(() => import('../pages/SlugGeneratorPage'))
+const LineToolsPage = lazy(() => import('../pages/LineToolsPage'))
 
 function ToolPlaceholder() {
   const location = useLocation()
@@ -66,6 +71,16 @@ function AppRoutes() {
           <CsvJsonPage />
         ) : tool.href === '/tools/yaml-json' ? (
           <YamlJsonPage />
+        ) : tool.href === '/tools/text-counter' ? (
+          <TextCounterPage />
+        ) : tool.href === '/tools/plain-text-diff' ? (
+          <PlainTextDiffPage />
+        ) : tool.href === '/tools/markdown-preview' ? (
+          <MarkdownPreviewPage />
+        ) : tool.href === '/tools/slug-generator' ? (
+          <SlugGeneratorPage />
+        ) : tool.href === '/tools/line-tools' ? (
+          <LineToolsPage />
         ) : tool.href === '/tools/text-formatter' ? (
           <TextFormatterPage />
         ) : tool.href === '/tools/json-diff' ? (
