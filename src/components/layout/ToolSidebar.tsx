@@ -8,13 +8,7 @@ import {
   X,
 } from 'lucide-react'
 import { Link, useLocation } from 'react-router'
-import { tools } from '../../tools/registry'
-import type { ToolCategory } from '../../tools/types'
-
-const categories: { id: ToolCategory; label: string }[] = [
-  { id: 'DEVELOPERS', label: 'Developers' },
-  { id: 'PRODUCTIVITY', label: 'Productivity' },
-]
+import { toolCategories, tools } from '../../tools/registry'
 
 interface ToolSidebarProps {
   collapsed: boolean
@@ -117,7 +111,7 @@ function ToolSidebar({
             )}
           </div>
 
-          {categories.map((category) => {
+          {toolCategories.map((category) => {
             const categoryTools = tools.filter(
               (tool) => tool.category === category.id,
             )

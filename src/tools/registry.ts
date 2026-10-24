@@ -19,7 +19,16 @@
   WholeWord,
   Type,
 } from 'lucide-react'
-import type { ToolDefinition } from './types'
+import type { ToolCategory, ToolDefinition } from './types'
+
+export const toolCategories: { id: ToolCategory; label: string }[] = [
+  { id: 'DEVELOPERS', label: 'Developer & Data' },
+  { id: 'TEXT_WRITING', label: 'Text & Writing' },
+  { id: 'DATE_TIME', label: 'Date & Time' },
+  { id: 'SECURITY_HASHING', label: 'Security & Hashing' },
+  { id: 'COLOR_IMAGE_WEB', label: 'Color, Image & Web' },
+  { id: 'CALCULATORS_CONVERTERS', label: 'Everyday Calculators & Converters' },
+]
 
 export const tools: ToolDefinition[] = [
   {
@@ -37,6 +46,14 @@ export const tools: ToolDefinition[] = [
     href: '/tools/json-diff',
     icon: FileDiff,
     accent: 'red',
+  },
+  {
+    title: 'GUID Generator',
+    description: 'Generate UUIDs and GUIDs for your projects.',
+    category: 'DEVELOPERS',
+    href: '/tools/guid-generator',
+    icon: Hash,
+    accent: 'orange',
   },
   {
     title: 'Base64 Encoder / Decoder',
@@ -97,7 +114,7 @@ export const tools: ToolDefinition[] = [
   {
     title: 'Text Formatter',
     description: 'Clean, format and transform text in seconds.',
-    category: 'PRODUCTIVITY',
+    category: 'TEXT_WRITING',
     href: '/tools/text-formatter',
     icon: Type,
     accent: 'blue',
@@ -105,7 +122,7 @@ export const tools: ToolDefinition[] = [
   {
     title: 'Word & Character Counter',
     description: 'Count words, characters, and lines as you type.',
-    category: 'PRODUCTIVITY',
+    category: 'TEXT_WRITING',
     href: '/tools/text-counter',
     icon: WholeWord,
     accent: 'green',
@@ -113,7 +130,7 @@ export const tools: ToolDefinition[] = [
   {
     title: 'Plain Text Diff',
     description: 'Compare two text passages line by line.',
-    category: 'PRODUCTIVITY',
+    category: 'TEXT_WRITING',
     href: '/tools/plain-text-diff',
     icon: Diff,
     accent: 'red',
@@ -121,7 +138,7 @@ export const tools: ToolDefinition[] = [
   {
     title: 'Markdown Preview',
     description: 'Write Markdown and preview the rendered document.',
-    category: 'PRODUCTIVITY',
+    category: 'TEXT_WRITING',
     href: '/tools/markdown-preview',
     icon: FileText,
     accent: 'blue',
@@ -129,7 +146,7 @@ export const tools: ToolDefinition[] = [
   {
     title: 'Slug Generator',
     description: 'Create clean, URL-friendly slugs from titles and text.',
-    category: 'PRODUCTIVITY',
+    category: 'TEXT_WRITING',
     href: '/tools/slug-generator',
     icon: Link,
     accent: 'orange',
@@ -137,7 +154,7 @@ export const tools: ToolDefinition[] = [
   {
     title: 'Line Tools',
     description: 'Remove duplicate lines or sort a list of lines.',
-    category: 'PRODUCTIVITY',
+    category: 'TEXT_WRITING',
     href: '/tools/line-tools',
     icon: ListFilter,
     accent: 'green',
@@ -145,7 +162,7 @@ export const tools: ToolDefinition[] = [
   {
     title: 'Unix Timestamp Converter',
     description: 'Convert Unix timestamps between seconds, milliseconds, and readable dates.',
-    category: 'PRODUCTIVITY',
+    category: 'DATE_TIME',
     href: '/tools/unix-timestamp',
     icon: Clock3,
     accent: 'blue',
@@ -153,7 +170,7 @@ export const tools: ToolDefinition[] = [
   {
     title: 'Time-Zone Converter',
     description: 'Convert local date-times between time zones, including daylight-saving changes.',
-    category: 'PRODUCTIVITY',
+    category: 'DATE_TIME',
     href: '/tools/time-zone-converter',
     icon: Globe2,
     accent: 'green',
@@ -161,7 +178,7 @@ export const tools: ToolDefinition[] = [
   {
     title: 'Date Difference Calculator',
     description: 'Calculate elapsed days, hours, minutes, and seconds between dates.',
-    category: 'PRODUCTIVITY',
+    category: 'DATE_TIME',
     href: '/tools/date-difference',
     icon: CalendarDays,
     accent: 'orange',
@@ -169,18 +186,10 @@ export const tools: ToolDefinition[] = [
   {
     title: 'Date/Time Format Converter',
     description: 'Format a date as ISO, UTC, or localized output for a selected time zone.',
-    category: 'PRODUCTIVITY',
+    category: 'DATE_TIME',
     href: '/tools/datetime-format',
     icon: CalendarClock,
     accent: 'red',
-  },
-  {
-    title: 'GUID Generator',
-    description: 'Generate UUIDs and GUIDs for your projects.',
-    category: 'DEVELOPERS',
-    href: '/tools/guid-generator',
-    icon: Hash,
-    accent: 'orange',
   },
 ]
 
