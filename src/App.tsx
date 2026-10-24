@@ -172,12 +172,17 @@ function App() {
           type="button"
           aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
           aria-expanded={mobileMenuOpen}
+          aria-controls="primary-navigation"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <Menu size={22} />
         </button>
 
-        <nav className={`main-nav ${mobileMenuOpen ? 'is-open' : ''}`}>
+        <nav
+          id="primary-navigation"
+          className={`main-nav ${mobileMenuOpen ? 'is-open' : ''}`}
+          aria-label="Main navigation"
+        >
           <a href="#tools" onClick={() => setMobileMenuOpen(false)}>
             Tools
           </a>
@@ -226,6 +231,7 @@ function App() {
             <form
               className="tool-search"
               id="tool-search"
+              role="search"
               onSubmit={handleSearch}
             >
               <Search size={20} aria-hidden="true" />
@@ -291,7 +297,11 @@ function App() {
             </p>
           </div>
 
-          <div className="tool-grid">
+          <div
+            className="tool-grid"
+            aria-live="polite"
+            aria-relevant="additions removals"
+          >
             {filteredTools.map((tool, index) => {
               const Icon = tool.icon
 
