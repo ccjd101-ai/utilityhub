@@ -4,6 +4,7 @@ import ToolLayout from '../components/layout/ToolLayout'
 import NotFoundPage from '../pages/NotFoundPage'
 import App from '../App'
 import GuidGeneratorPage from '../pages/GuidGeneratorPage'
+import JsonDiffPage from '../pages/JsonDiffPage'
 import JsonFormatterPage from '../pages/JsonFormatterPage'
 
 function ToolPlaceholder() {
@@ -41,7 +42,9 @@ function AppRoutes() {
     ...tools.map((tool) => ({
       path: tool.href,
       element:
-        tool.href === '/tools/json-formatter' ? (
+        tool.href === '/tools/json-diff' ? (
+          <JsonDiffPage />
+        ) : tool.href === '/tools/json-formatter' ? (
           <JsonFormatterPage />
         ) : tool.href === '/tools/guid-generator' ? (
           <GuidGeneratorPage />
