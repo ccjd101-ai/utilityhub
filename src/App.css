@@ -3894,3 +3894,136 @@
     outline: 2px solid Highlight;
   }
 }
+
+/* JSON Formatter */
+.json-formatter {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.json-formatter-toolbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.json-formatter-indent {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.json-formatter-indent label,
+.json-formatter-editor > label {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.json-formatter-indent select {
+  min-height: 2.75rem;
+  padding: 0.6rem 2rem 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.json-formatter-privacy {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.json-formatter-editors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.json-formatter-editor {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.json-formatter-editor textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 23rem;
+  padding: 1rem;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+.json-formatter-editor textarea::placeholder {
+  color: var(--text-subtle);
+}
+
+.json-formatter-editor textarea[readonly] {
+  background: var(--bg-raised);
+}
+
+.json-formatter-hint {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.json-formatter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.json-formatter-actions .action-button {
+  min-width: 7.5rem;
+}
+
+.json-formatter-status {
+  min-height: 1.35rem;
+  margin: 0;
+  color: var(--green);
+  font-size: 0.88rem;
+}
+
+.json-formatter-status.is-error {
+  color: #ff9085;
+}
+
+.json-formatter button:focus-visible,
+.json-formatter select:focus-visible,
+.json-formatter textarea:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .json-formatter-editors {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .json-formatter-editor textarea {
+    min-height: 18rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .json-formatter-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .json-formatter-actions .action-button {
+    flex: 1 1 calc(50% - 0.7rem);
+  }
+}
