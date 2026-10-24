@@ -2,6 +2,8 @@
 import { ArrowLeft, Wrench } from 'lucide-react'
 import { Link } from 'react-router'
 import ToolSidebar from './ToolSidebar'
+import RelatedTools from '../tools/RelatedTools'
+import { tools } from '../../tools/registry'
 
 interface ToolLayoutProps {
   children: ReactNode
@@ -15,6 +17,7 @@ function ToolLayout({
   description,
 }: ToolLayoutProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const currentPath = tools.find((tool) => tool.title === title)?.href
 
   return (
     <div
@@ -55,6 +58,8 @@ function ToolLayout({
           >
             {children}
           </section>
+
+          <RelatedTools currentPath={currentPath} />
 
           <footer className="tool-page-footer">
             <span>UtilityHub</span>
