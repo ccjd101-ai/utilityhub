@@ -31,6 +31,7 @@ const UuidValidatorPage = lazy(() => import('../pages/UuidValidatorPage'))
 const ColorConverterPage = lazy(() => import('../pages/ColorConverterPage'))
 const ContrastCheckerPage = lazy(() => import('../pages/ContrastCheckerPage'))
 const QrCodeGeneratorPage = lazy(() => import('../pages/QrCodeGeneratorPage'))
+const ImageCompressorPage = lazy(() => import('../pages/ImageCompressorPage'))
 
 function ToolPlaceholder() {
   const location = useLocation()
@@ -119,6 +120,8 @@ function AppRoutes() {
           <ContrastCheckerPage />
         ) : tool.href === '/tools/qr-code-generator' ? (
           <QrCodeGeneratorPage />
+        ) : tool.href === '/tools/image-compressor' ? (
+          <ImageCompressorPage />
         ) : (
           <ToolPlaceholder />
         ),

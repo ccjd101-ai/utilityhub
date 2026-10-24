@@ -23,6 +23,7 @@
   Palette,
   ScanQrCode,
   Contrast,
+  ImageDown,
 } from 'lucide-react'
 import type { ToolCategory, ToolDefinition } from './types'
 
@@ -244,6 +245,14 @@ export const tools: ToolDefinition[] = [
     icon: ScanQrCode,
     accent: 'orange',
   },
+  {
+    title: 'Image Compressor & Resizer',
+    description: 'Resize and compress images locally, then download the optimized result.',
+    category: 'COLOR_IMAGE_WEB',
+    href: '/tools/image-compressor',
+    icon: ImageDown,
+    accent: 'red',
+  },
 ]
 
 export function getToolByPath(path: string): ToolDefinition | undefined {
@@ -274,9 +283,10 @@ const relatedToolPaths: Record<string, string[]> = {
   '/tools/password-generator': ['/tools/sha256', '/tools/uuid-validator', '/tools/guid-generator'],
   '/tools/sha256': ['/tools/password-generator', '/tools/jwt-decoder', '/tools/uuid-validator', '/tools/guid-generator'],
   '/tools/uuid-validator': ['/tools/guid-generator', '/tools/password-generator', '/tools/sha256'],
-  '/tools/color-converter': ['/tools/contrast-checker', '/tools/qr-code-generator', '/tools/slug-generator'],
-  '/tools/contrast-checker': ['/tools/color-converter', '/tools/qr-code-generator', '/tools/markdown-preview'],
-  '/tools/qr-code-generator': ['/tools/color-converter', '/tools/contrast-checker', '/tools/url-codec'],
+  '/tools/color-converter': ['/tools/contrast-checker', '/tools/image-compressor', '/tools/qr-code-generator', '/tools/slug-generator'],
+  '/tools/contrast-checker': ['/tools/color-converter', '/tools/image-compressor', '/tools/qr-code-generator', '/tools/markdown-preview'],
+  '/tools/qr-code-generator': ['/tools/image-compressor', '/tools/color-converter', '/tools/contrast-checker', '/tools/url-codec'],
+  '/tools/image-compressor': ['/tools/color-converter', '/tools/contrast-checker', '/tools/qr-code-generator'],
 }
 
 export function getRelatedTools(path: string, limit = 5): ToolDefinition[] {
